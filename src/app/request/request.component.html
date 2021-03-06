@@ -1,0 +1,542 @@
+<section *ngIf='show' style="padding: 20px;padding-top: 0 !important;padding-bottom: 0 !important;">
+    <div class="col-12 mt-1">
+        <div class="card">
+            <div class="card-header" style="padding: 0 !important;">
+                <!-- <h4 style="float: left;">All Requests</h4>
+                <div style="clear: both;"></div> -->
+                <nav style="text-align:center;">
+                    <div class="nav nav-tabs shadow-sm mb-1" id="nav-tab" role="tablist" style='display: inline-block;border-bottom: 1px solid #dee2e6!important;'>
+                        <a (click)='refuu()' class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">from {{rootname}}</a>
+                        <a (click)='refuu()' class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">to {{rootname}}</a>
+                        <a style="position: relative;" class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Requests to {{rootname}}<span style='height: 20px;width: 20px;border-radius:50%;background-color:red;position:absolute;top:0;right: 0;color:white;font-size: 15px;line-height: 1.5;text-align: center;font-weight: bolder;'>{{allCaAnsNot.length}}</span></a>
+
+                        <a style="position: relative;" class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact0" role="tab" aria-controls="nav-contact" aria-selected="false">Requests from {{rootname}}<span style='height: 20px;width: 20px;border-radius:50%;background-color:red;position:absolute;top:0;right: 0;color:white;font-size: 15px;line-height: 1.5;text-align: center;font-weight: bolder;'>{{allCaAnsRFNot.length}}</span></a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <!--from-->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <!-- <div style="text-align: center !important;">
+                            <button (click)='addC()' style="width:auto;box-shadow:none; display: inline-block;background-color: gray !important;" type="button" class="btn btn-secondary mt-1 mb-2">Request to transfer a product from {{rootname}} to another branch</button>
+                        </div> -->
+                        <div class='col-12' style='background-color: #292929;'>
+                            <form #data='ngForm' (submit)='addCa(data.value)' style="direction: ltr !important;">
+                                <span id="form00" style="display: block;">
+                                <!-- <ng-container *ngIf='goQty0'> -->
+                                <!-- <h2 style="text-align: center; color: white;" class='mb-2' *ngFor='let r of QtyAvaliable; let x =index'>{{x+1}} - The available quantity is {{r.qty}} in the store of the {{r.rootname}}</h2> -->
+                                <!-- </ng-container> -->
+                                <div class='container-fluid pl-1 pr-1'>
+                                  <div class='row'>
+                                    <div class='col-sm-2 lastU'>
+                                      <label style='color: white;'>Supplier :</label>
+                                      <select [(ngModel)]='searchsupplier' class="form-control mb-2 select2 selectsearchsupplier" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                                        <option disabled selected>Search By Supplier</option>
+                                        <option>All</option>
+                                        <option *ngFor='let w of supplierA' [value]="w.id">Name : {{w.name}}</option>
+                                </select>
+                                    </div>
+                                    <div class='col-sm-1 lastU'>
+                                      <label style='color: white;'>piNo :</label>
+                                      <select class="form-control mb-2 select2 selectpin" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                                        <option value="undefined" disabled selected>PI NO</option>
+                                        <option>All</option>
+                                        <option *ngFor='let w of pi; let e = index' [value]="e+1">{{e+1}}</option>
+                                </select>
+                                    </div>
+                                    <div class='col-sm-2 lastU'>
+                                      <label style='color: white;'>The_intended_branch :</label>
+                                      <select [(ngModel)]='root' name="root" class="form-control mt-4 select2 selectroot" style="height: unset !important;">
+                                        <option value ='undefined' disabled>The intended branch</option>
+                                        <option *ngFor='let x of rootA' [value]="x.id"><ng-container *ngIf='x.id != adminRoot'>{{x.name}}</ng-container></option>
+                                  </select>
+                                    </div>
+                                    <div class='col-sm-3 lastU'>
+                                      <label style='color: white;'>Intended_Item :</label>
+                                      <select [(ngModel)]='item' name="item" class="form-control mt-4 select2 selectitem" style="height: unset !important;">
+                                        <option value ='undefined' disabled>Intended Item</option>
+                                        <option value = 'All'>All</option>
+                                        <option *ngFor='let x of items|placeSearch:adminRoot|itemmin0|searchSupplier:searchsupplier|selectpin:selectpin' [value]="x.id">code : {{x.code}} || qty : {{x.qty}}</option>
+                                  </select>
+                                    </div>
+                                    <div class='col-sm-3'>
+                                      <label style='color: white;'>Qty :</label>
+                                      <input style='width: 94.5% !important;height: 27px;display: inline-block;' class="text d1 submitNumber mb-2" type="number" name="qty" [(ngModel)]='qty' [placeholder]="ost" required="">
+                                    </div>
+                                    <!-- <div class='col-sm-3'>
+                                      <label style='color: white;'>Price Seller :</label>
+                                      <input style='width: 94.5% !important;height: 27px;display: inline-block;' class="text d1 submitNumber mb-2" type="number" name="priceSeller" [(ngModel)]='priceSeller' [placeholder]="priceSeller" required="">
+                                    </div> -->
+                                    <!-- <div class='col-sm-2'>
+                                      <input style='height: 54px;' class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="payment" required="">
+                                    </div>-->
+                                    <!-- <div class="col-sm-2">
+                                      <label style='color: white;'>Discound : &nbsp;&nbsp;</label>
+                                      <input style='width: 73% !important;height: 49px;display: inline-block;' class="text mt-2 d1 submitNumber" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+                                    </div> -->
+                                    <div class="col-sm-1 mt-4">
+                                      <button style='margin-top: auto; width:100%;line-height:1;padding: 4px !important;' class='btn btn-secondary' type="submit"><i class="fas fa-plus"></i></button>
+                                      <!-- <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add"> -->
+                                    </div>
+                                    </div>
+                                </div>
+                        <div style="clear: both;"></div>
+                        </span>
+                            </form>
+                        </div>
+                        <div class="card-body" style="padding: 0 !important;">
+                            <div class="table-responsive" style="overflow: auto;height: 65.8vh;">
+
+                                <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                                    <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">No.</th>
+                                                <th scope="col">Item_Code</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Where_to_transport_the_Item</th>
+                                                <th scope="col">The_date_of_Request</th>
+                                                <th scope="col">Reply_(accept_/_reject)</th>
+                                                <th scope="col">Update</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor='let v of allCa|searchName:searchName; let n = index;'>
+                                                <th scope="row" style="text-align: center;">{{n+1}}</th>
+                                                <td data-title="Item_Code">{{v.code}}</td>
+                                                <td data-title="Qty">{{v.qty}}</td>
+                                                <td data-title="Where_to_transport_the_Item">{{v.nameroot}}</td>
+                                                <td data-title="The_date_of_Request">{{v.date|date:'dd-MM-yyyy'}}</td>
+                                                <td data-title="Reply_(accept_/_reject)">{{v.accept}}</td>
+                                                <td data-title="Update"><button (click)='upCa(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                                                <td data-title="Delete"><button (click)='delCa(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--from another-->
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <!-- <div style="text-align: center !important;">
+                            <button (click)='addCRF()' style="width: auto;box-shadow:none; display: inline-block;background-color: gray !important;" type="button" class="btn btn-secondary mt-3">Request to transfer a product from another branch to {{rootname}}</button>
+                        </div> -->
+                        <div class='col-12' style='background-color: #292929;'>
+                            <form #dataRF='ngForm' (submit)='addCaRF(dataRF.value)' style="direction: ltr !important;">
+                                <span id="form00" style="display: block;">
+                              <!-- <ng-container *ngIf='goQty0'> -->
+                              <!-- <h2 style="text-align: center; color: white;" class='mb-2' *ngFor='let r of QtyAvaliable; let x =index'>{{x+1}} - The available quantity is {{r.qty}} in the store of the {{r.rootname}}</h2> -->
+                              <!-- </ng-container> -->
+                              <div class='container-fluid pl-1 pr-1'>
+                                <div class='row'>
+                                  <div class='col-sm-2 lastU'>
+                                    <label style='color: white;'>Supplier :</label>
+                                    <select [(ngModel)]='searchsupplier' class="form-control mb-2 select2 selectsearchsupplier0" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                                      <option disabled selected>Search By Supplier</option>
+                                      <option>All</option>
+                                      <option *ngFor='let w of supplierA' [value]="w.id">Name : {{w.name}}</option>
+                              </select>
+                                  </div>
+                                  <div class='col-sm-1 lastU'>
+                                    <label style='color: white;'>piNo :</label>
+                                    <select class="form-control mb-2 select2 selectpin0" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                                      <option value="undefined" disabled selected>PI NO</option>
+                                      <option>All</option>
+                                      <option *ngFor='let w of pi; let e = index' [value]="e+1">{{e+1}}</option>
+                              </select>
+                                  </div>
+                                  <div class='col-sm-2 lastU'>
+                                    <label style='color: white;'>The_intended_branch :</label>
+                                    <select [(ngModel)]='root' name="root" class="form-control mt-4 select2 selectroot00" style="height: unset !important;">
+                                      <option value ='undefined' disabled>The intended branch</option>
+                                      <option *ngFor='let x of rootA' [value]="x.id"><ng-container *ngIf='x.id != adminRoot'>{{x.name}}</ng-container></option>
+                                </select>
+                                  </div>
+                                  <div class='col-sm-3 lastU'>
+                                    <label style='color: white;'>Intended_Item :</label>
+                                    <select [(ngModel)]='item' name="item" class="form-control mt-4 select2 selectitem00" style="height: unset !important;">
+                                      <option value ='undefined' disabled>Intended Item</option>
+                                      <option value = 'All'>All</option>
+                                      <option *ngFor='let x of items|placeSearch:root|itemmin0|searchSupplier:searchsupplier0|selectpin:selectpin0' [value]="x.id">code : {{x.code}} || qty : {{x.qty}}</option>
+                                </select>
+                                  </div>
+                                  <div class='col-sm-3'>
+                                    <label style='color: white;'>Qty :</label>
+                                    <input style='width: 94.5% !important;height: 27px;display: inline-block;'  class="text mb-2 d1" type="number" name="qty" [(ngModel)]='qty' [placeholder]="ost1" required="">
+                                  </div>
+                                  <!-- <div class='col-sm-3'>
+                                    <label style='color: white;'>Price Seller :</label>
+                                    <input style='width: 94.5% !important;height: 27px;display: inline-block;' class="text d1 submitNumber mb-2" type="number" name="priceSeller" [(ngModel)]='priceSeller' [placeholder]="priceSeller" required="">
+                                  </div> -->
+                                  <!-- <div class='col-sm-2'>
+                                    <input style='height: 54px;' class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="payment" required="">
+                                  </div>-->
+                                  <!-- <div class="col-sm-2">
+                                    <label style='color: white;'>Discound : &nbsp;&nbsp;</label>
+                                    <input style='width: 73% !important;height: 49px;display: inline-block;' class="text mt-2 d1 submitNumber" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+                                  </div> -->
+                                  <div class="col-sm-1 mt-4">
+                                    <button style='margin-top: auto; width:100%;line-height:1;padding: 4px !important;' class='btn btn-secondary' type="submit"><i class="fas fa-plus"></i></button>
+                                    <!-- <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add"> -->
+                                  </div>
+                                  </div>
+                              </div>
+                      <div style="clear: both;"></div>
+                      </span>
+                            </form>
+                        </div>
+                        <div class="card-body" style="padding: 0 !important;">
+                            <div class="table-responsive" style="overflow: auto;height: 65.8vh;">
+
+                                <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                                    <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">No.</th>
+                                                <th scope="col">Item_Code</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Where_to_transport_the_Item</th>
+                                                <th scope="col">The_date_of_Request</th>
+                                                <th scope="col">Reply_(accept_/_reject)</th>
+                                                <th scope="col">Update</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor='let v of allCa0|searchName:searchName; let n = index;'>
+                                                <th scope="row" style="text-align: center;">{{n+1}}</th>
+                                                <td data-title="Item_Code">{{v.code}}</td>
+                                                <td data-title="Qty">{{v.qty}}</td>
+                                                <td data-title="Where_to_transport_the_Item">{{v.nameroot}}</td>
+                                                <td data-title="The_date_of_Request">{{v.date|date:'dd-MM-yyyy'}}</td>
+                                                <td data-title="Reply_(accept_/_reject)">{{v.accept}}</td>
+                                                <td data-title="Update"><button (click)='upCaRF(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                                                <td data-title="Delete"><button (click)='delCaRF(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class='col-12 py-1' style='background-color: #292929;'>
+                            <form #dataRF='ngForm' (submit)='addCaRF(dataRF.value)' style="direction: ltr !important;">
+                                <span id="form00" style="display: block;">
+                          <!-- <ng-container *ngIf='goQty0'> -->
+                          <!-- <h2 style="text-align: center; color: white;" class='mb-2' *ngFor='let r of QtyAvaliable; let x =index'>{{x+1}} - The available quantity is {{r.qty}} in the store of the {{r.rootname}}</h2> -->
+                          <!-- </ng-container> -->
+                          <div class='container-fluid pl-1 pr-1'>
+                            <div class='row'>
+                              <div class='col-sm-3 lastU'></div>
+                              <div class='col-sm-3 lastU'>
+                                <label style='color: white;'>Search_By_Branch :</label>
+                                <select [(ngModel)]='rootSe2' name="root" class="form-control mt-4 select2 selectroot00R" style="height: unset !important;">
+                                  <option value ='undefined' disabled>Search By Branch</option>
+                                  <option value = 'All'>All</option>
+                                  <option *ngFor='let x of rootA' [value]="x.id"><ng-container *ngIf='x.id != adminRoot'>{{x.name}}</ng-container></option>
+                            </select>
+                              </div>
+                              <div class='col-sm-3 lastU'>
+                                <label style='color: white;'>Search_By_Item :</label>
+                                <select [(ngModel)]='itemR0' name="item" class="form-control mt-4 select2 selectitem00R" style="height: unset !important;">
+                                  <option value ='undefined' disabled>Search By Item</option>
+                                  <option value = 'All'>All</option>
+                                  <option *ngFor='let x of items|placeSearch:root|itemmin0' [value]="x.id">{{x.code}}</option>
+                            </select>
+                              </div>
+                              <div class='col-sm-3 lastU'></div>
+                              <!-- <div class='col-sm-3'>
+                                <label style='color: white;'>Price Seller :</label>
+                                <input style='width: 94.5% !important;height: 27px;display: inline-block;' class="text d1 submitNumber mb-2" type="number" name="priceSeller" [(ngModel)]='priceSeller' [placeholder]="priceSeller" required="">
+                              </div> -->
+                              <!-- <div class='col-sm-2'>
+                                <input style='height: 54px;' class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="payment" required="">
+                              </div>-->
+                              <!-- <div class="col-sm-2">
+                                <label style='color: white;'>Discound : &nbsp;&nbsp;</label>
+                                <input style='width: 73% !important;height: 49px;display: inline-block;' class="text mt-2 d1 submitNumber" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+                              </div> -->
+                              <!-- <div class="col-sm-1 mt-4">
+                                <button style='margin-top: auto; width:100%;line-height:1;padding: 4px !important;' class='btn btn-secondary' type="submit"><i class="fas fa-plus"></i></button> -->
+                                <!-- <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add"> -->
+                              <!-- </div> -->
+                              </div>
+                          </div>
+                  <div style="clear: both;"></div>
+                  </span>
+                            </form>
+                        </div>
+                        <!-- you response -->
+                        <!-- <button style="box-shadow:none; display: block;background-color: gray !important;" type="button" class="btn btn-secondary mt-3">Your transfer requests are awaiting your response</button> -->
+
+                        <div class="card-body" style="padding: 0 !important;">
+                            <div class="table-responsive" style="overflow: auto;height: 65.8vh;">
+
+                                <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                                    <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">No.</th>
+                                                <th scope="col">Item_Code</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">The_branch_that_ordered_the_Request</th>
+                                                <th scope="col">The_date_of_Request</th>
+                                                <th scope="col">Accept</th>
+                                                <th scope="col">Reject</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor='let v of allCaAns|searchName:searchName|from0:rootSe2|itemSearchReq:itemR0; let n = index;'>
+                                                <th scope="row" style="text-align: center;">{{n+1}}</th>
+                                                <td data-title="Item_Code">{{v.code}}</td>
+                                                <td data-title="Qty">{{v.qty}}</td>
+                                                <td data-title="The_branch_that_ordered_the_Request">{{v.nameroot}}</td>
+                                                <td data-title="The_date_of_Request">{{v.date|date: 'dd-MM-yyyy'}}</td>
+                                                <td data-title="Accept"><button (click)='upCaHH(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-check-circle"></i></button></td>
+                                                <td data-title="Reject"><button (click)='delCaHH(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-window-close"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact0" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <!-- <button style="box-shadow:none; display: block;background-color: gray !important;" type="button" class="btn btn-secondary mt-3">Transfer requests from you await your response</button> -->
+                        <div class='col-12 py-1' style='background-color: #292929;'>
+                            <form #dataRF='ngForm' (submit)='addCaRF(dataRF.value)' style="direction: ltr !important;">
+                                <span id="form00" style="display: block;">
+                        <!-- <ng-container *ngIf='goQty0'> -->
+                        <!-- <h2 style="text-align: center; color: white;" class='mb-2' *ngFor='let r of QtyAvaliable; let x =index'>{{x+1}} - The available quantity is {{r.qty}} in the store of the {{r.rootname}}</h2> -->
+                        <!-- </ng-container> -->
+                        <div class='container-fluid pl-1 pr-1'>
+                          <div class='row'>
+                            <div class='col-sm-3 lastU'></div>
+                            <div class='col-sm-3 lastU'>
+                              <label style='color: white;'>Search_By_Branch :</label>
+                              <select [(ngModel)]='rootSe20' name="root" class="form-control mt-4 select2 selectroot00R0" style="height: unset !important;">
+                                <option value ='undefined' disabled>Search By Branch</option>
+                                <option value = 'All'>All</option>
+                                <option *ngFor='let x of rootA' [value]="x.id"><ng-container *ngIf='x.id != adminRoot'>{{x.name}}</ng-container></option>
+                          </select>
+                            </div>
+                            <div class='col-sm-3 lastU'>
+                              <label style='color: white;'>Search_By_Item :</label>
+                              <select [(ngModel)]='itemR00' name="item" class="form-control mt-4 select2 selectitem00R0" style="height: unset !important;">
+                                <option value ='undefined' disabled>Search By Item</option>
+                                <option value = 'All'>All</option>
+                                <option *ngFor='let x of items|placeSearch:root|itemmin0' [value]="x.id">{{x.code}}</option>
+                          </select>
+                            </div>
+                            <div class='col-sm-3 lastU'></div>
+                            <!-- <div class='col-sm-3'>
+                              <label style='color: white;'>Price Seller :</label>
+                              <input style='width: 94.5% !important;height: 27px;display: inline-block;' class="text d1 submitNumber mb-2" type="number" name="priceSeller" [(ngModel)]='priceSeller' [placeholder]="priceSeller" required="">
+                            </div> -->
+                            <!-- <div class='col-sm-2'>
+                              <input style='height: 54px;' class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="payment" required="">
+                            </div>-->
+                            <!-- <div class="col-sm-2">
+                              <label style='color: white;'>Discound : &nbsp;&nbsp;</label>
+                              <input style='width: 73% !important;height: 49px;display: inline-block;' class="text mt-2 d1 submitNumber" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+                            </div> -->
+                            <!-- <div class="col-sm-1 mt-4">
+                              <button style='margin-top: auto; width:100%;line-height:1;padding: 4px !important;' class='btn btn-secondary' type="submit"><i class="fas fa-plus"></i></button> -->
+                              <!-- <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add"> -->
+                            <!-- </div> -->
+                            </div>
+                        </div>
+                <div style="clear: both;"></div>
+                </span>
+                            </form>
+                        </div>
+
+                        <div class="card-body" style="padding: 0 !important;">
+                            <div class="table-responsive" style="overflow: auto;height: 65.8vh;">
+
+                                <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                                    <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">No.</th>
+                                                <th scope="col">Item_Code</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">The_branch_that_ordered_the_Request</th>
+                                                <th scope="col">The_date_of_Request</th>
+                                                <th scope="col">Accept</th>
+                                                <th scope="col">Reject</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor='let v of allCaAnsRF|searchName:searchName|to0:rootSe20|itemSearchReq:itemR00; let n = index;'>
+                                                <th scope="row" style="text-align: center;">{{n+1}}</th>
+                                                <td data-title="Item_Code">{{v.code}}</td>
+                                                <td data-title="Qty">{{v.qty}}</td>
+                                                <td data-title="The_branch_that_ordered_the_Request">{{v.nameroot}}</td>
+                                                <td data-title="The_date_of_Request">{{v.date|date:'dd-MM-yyyy'}}</td>
+                                                <td data-title="Accept"><button (click)='upCaHHHH(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-check-circle"></i></button></td>
+                                                <td data-title="Reject"><button (click)='delCaHHHH(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-window-close"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data='ngForm' (submit)='addCa(data.value)' style="direction: ltr !important;">
+                        <span id="form00" style="display: block;">
+                          <select [(ngModel)]='root' name="root" class="form-control mt-4 select2 selectroot" style="height: unset !important;">
+                            <option value ='undefined' disabled>The intended branch</option>
+                            <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+                      </select>
+                      <select [(ngModel)]='item' name="item" class="form-control mt-4 select2 selectitem" style="height: unset !important;">
+                        <option value ='undefined' disabled>Intended Item</option>
+                        <option *ngFor='let x of items|placeSearch:adminRoot|itemmin0' [value]="x.id">code : {{x.code}} || qty : {{x.qty}}</option>
+                  </select>
+                  <input  class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+                      <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+            <div style="clear: both;"></div>
+            </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="updRF">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='closeRF()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #dataRF='ngForm' (submit)='addCaRF(dataRF.value)' style="direction: ltr !important;">
+                        <span id="form00" style="display: block;">
+                        <select [(ngModel)]='root' name="root" class="form-control mt-4 select2 selectroot00" style="height: unset !important;">
+                          <option value ='undefined' disabled>The intended branch</option>
+                          <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+                    </select>
+                    <select [(ngModel)]='item' name="item" class="form-control mt-4 select2 selectitem00" style="height: unset !important;">
+                      <option value ='undefined' disabled>Intended Item</option>
+                      <option *ngFor='let x of items|placeSearch:root|itemmin0' [value]="x.id">code : {{x.code}} || qty : {{x.qty}}</option>
+                </select>
+                <input  class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+                    <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+          <div style="clear: both;"></div>
+          </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>
+<section id="upd-dd">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedC()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+        <input (click)='ok()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Delete confirmation">
+        <div style="clear: both;"></div>
+        </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-ddRF">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedCRF()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+      <input (click)='okRF()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Delete confirmation">
+      <div style="clear: both;"></div>
+      </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-up">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUpCa()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data00='ngForm' (submit)='okUp(data00.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                      <select [(ngModel)]='root' name="root" class="form-control mt-4 select2 selectroot0" style="height: unset !important;">
+                        <option disabled>The intended branch</option>
+                        <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+                  </select>
+                  <select [(ngModel)]='item' name="item" class="form-control mt-4 select2 selectitem0" style="height: unset !important;">
+                    <option disabled>Intended Item</option>
+                    <option *ngFor='let x of items|placeSearch:adminRoot|itemmin0' [value]="x.id">code : {{x.code}} || qty : {{x.qty}}</option>
+              </select>
+              <input  class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+                           <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Update">
+                <div style="clear: both;"></div>
+          </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-upRF">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUpCaRF()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data00RF='ngForm' (submit)='okUpRF(data00RF.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                    <select [(ngModel)]='root' name="root" class="form-control mt-4 select2 selectroot000" style="height: unset !important;">
+                      <option disabled>The intended branch</option>
+                      <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+                </select>
+                <select [(ngModel)]='item' name="item" class="form-control mt-4  select2 selectitem000" style="height: unset !important;">
+                  <option disabled>Intended Item</option>
+                  <option *ngFor='let x of items|placeSearch:root|itemmin0' [value]="x.id">code : {{x.code}} || qty : {{x.qty}}</option>
+            </select>
+            <input  class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+
+                         <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Update">
+              <div style="clear: both;"></div>
+        </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

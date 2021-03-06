@@ -1,0 +1,111 @@
+<section *ngIf='show' style="padding: 20px; padding-bottom: 0 !important;padding-top: 0 !important" class="no0">
+    <div class="col-12 mt-3">
+        <div class="card">
+            <div class="card-header no">
+                <h4 style="float: left;">Histoty</h4>
+                <div style="clear: both;margin-bottom: 5px;"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-12">
+                            <select [(ngModel)]='searchName' class="form-control" style="height: 25px !important; width: 100%;border: 1px solid black !important; color: black !important;padding:0 !important;">
+                        <option disabled>Search By User</option>
+                        <option>All</option>
+                        <option *ngFor='let x of arre0' [value]="x.id">{{x.name}}</option>
+                </select>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <select [(ngModel)]='placeSearch' class="form-control" style="height: 25px !important; width: 100%;border: 1px solid black !important; color: black !important;padding:0 !important;">
+                        <option disabled>Search By Branch</option>
+                        <option>All</option>
+                        <option *ngFor='let w of rootA' [value]="w.id">{{w.name}}</option>
+                </select>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <button (click)='search()' style="height: 25px !important; width: 94.5%;box-shadow:none; display: block;background-color: gray !important;line-height: 0;" type="button" class="btn btn-secondary">Search By Date</button>
+
+                        </div>
+                        <div class='col-lg-1 col-12'>
+                            <button *ngIf='show22' (click)='printert()' class="btn btn-secondary" style="height: 25px !important;border: 1px solid black !important;width: 94.5% !important;line-height: 0;"><i class="fas fa-print"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf='show22'>
+
+
+
+                <div class="card-body" style="padding: 0 !important;">
+                    <div class="table-responsive dfg" style="overflow: auto;height: 67.2vh;">
+
+
+                        <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                            <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                                <thead>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th scope="col">Action</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Who Action</th>
+                                        <th scope="col">Where Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let v of arre|nameSearchWho:searchName|placeSearch:placeSearch; let n = index;'>
+                                        <th scope="row">{{n+1}}</th>
+                                        <td data-title="Action">{{v.notes}}</td>
+                                        <td data-title="Date">{{v.date}}</td>
+                                        <td data-title="Who Action">{{v.username}}</td>
+                                        <td data-title="Where Action">{{v.placename}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </ng-container>
+        </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data098='ngForm' (submit)='search0(data098.value)' style="direction: ltr !important;">
+                        <span style="display: block;">
+                        <label style="color: white; float: left;">From :</label>
+                  <div style="clear: both;"></div>
+                  <input style='height:25px;' class="text mt-2 d1" type="date" name="from" [(ngModel)]='from' placeholder="من" required="">
+                  <label style="color: white; float: left;">To :</label>
+                  <div style="clear: both;"></div>
+                  <input style='height:25px;' class="text mt-2 d1" type="date" name="to" [(ngModel)]='to' placeholder="الى" required="">
+                    <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Search">
+                    <div style="clear: both;"></div>
+                    </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,595 @@
+<section id='printAll1' *ngIf='show' style="padding: 20px; padding-top: 5px !important; padding-bottom: 0 !important;" class='no0'>
+    <div class="col-12">
+        <div class="card" style='margin-bottom: 0 !important;'>
+            <div class="card-header no" style='padding-top: 0;'>
+                <h4 style="float: left; display: none;">All Items</h4>
+                <div style="clear: both;"></div>
+                <h2 class="printAll" style="text-align: center;">{{lenghtItem}} Items</h2>
+                <nav class="printAll" style="text-align:center;">
+                    <div class="nav nav-tabs shadow-sm mb-1" id="nav-tab" role="tablist" style='display: inline-block;border-bottom: 1px solid #dee2e6!important;'>
+                        <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" (click)='sfr0()'>Search Item</a>
+                        <a (click)='sfr()' class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Add Item</a>
+                        <a (click)='sfr()' class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Add Item By Excel File</a>
+                        <a (click)='printallG()' style='cursor: pointer !important;' class="nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fas fa-print"></i></a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+                        <!-- search -->
+
+                        <div class="container-fluid printAll" style="padding: 0 !important;">
+                            <div class="row">
+                                <div class="col-lg-2 col-12">
+                                    <!-- <label>From : </label><br> -->
+                                    <input style="height: 20px;" *ngIf='OrderDate000S' (mouseenter)='OrderDate0010S()' class="text d1 mb-2" type="text" placeholder="From Date" required="">
+                                    <input *ngIf='OrderDate000S0' (change)='goDate()' id="fromDG" placeholder="Search By Code" class="p-1 mb-2 fromDA" type="date" style="width: 94.5% !important; height: 27px;border: 1px solid black !important; color: black !important;">
+                                </div>
+                                <div class="col-lg-2 col-12">
+                                    <!-- <label>To : </label><br> -->
+                                    <input style="height: 20px;" *ngIf='OrderDate000SS' (mouseenter)='OrderDate0010SS()' class="text d1 mb-2" type="text" placeholder="To Date" required="">
+                                    <input *ngIf='OrderDate000SS0' (change)='goDate()' id="toDG" placeholder="Search By Code" class="p-1 mb-2 toDA" type="date" style="width: 94.5% !important; height: 27px;border: 1px solid black !important; color: black !important;">
+                                </div>
+                                <!-- <div class="col-lg-1 col-12">
+                                    <label>Submit : </label><br>
+                                    <button (click)='goDate()' class="p-1 mb-2 btn btn-secondary" type="submit" style="width: 99%; height: 27px;border: 1px solid black !important;line-height: 0;">Search Date</button>
+                                </div> -->
+
+
+
+                                <div class="col-lg-2 col-12 mb-2 lastU">
+                                    <!-- <input placeholder="Search By Code" [(ngModel)]='serchCode' id='plaho' class="p-1 mb-2" type="text" style="width: 100%; height: 54px;border: 1px solid black !important; color: black !important;"> -->
+                                    <!-- <label>Code : </label><br> -->
+                                    <select [(ngModel)]='serchCode' class="form-control mb-2 select2 selectsearchroot000" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                                      <option disabled selected value="undefined">Search By Code</option>
+                                      <option>All</option>
+                                      <option *ngFor='let w of arre' [value]="w.code">{{w.code}}</option>
+                                    </select>
+                                </div>
+                                <!-- <div class="col-lg-3 col-12">
+                                    <button (click)='addI()' style="height: 45px !important; width: 94.5% !important;border: 1px solid black !important; " type="button" class="btn btn-secondary mb-2">Add Item</button>
+                                </div> -->
+                                <!-- <div class="col-lg-3 col-12">
+                                    <button (click)='addIF()' style="height: 45px !important; width: 94.5% !important;border: 1px solid black !important; " type="button" class="btn btn-secondary mb-2">Add Items By File Excel</button>
+                                </div> -->
+                                <div class="col-lg-2 col-12 mb-2 lastU">
+                                    <!-- <label>Branch : </label><br> -->
+                                    <select [(ngModel)]='placeSearch' class="form-control mb-2 select2 selectsearchroot" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                        <option disabled>Search By Branch</option>
+                        <input type='text'>
+                        <option>All</option>
+                        <option *ngFor='let w of rootA' [value]="w.id">{{w.name}}</option>
+                </select>
+                                </div>
+                                <div class="col-lg-2 col-12 mb-2 lastU">
+                                    <!-- <label>Supplier : </label><br> -->
+                                    <select [(ngModel)]='searchsupplier' class="form-control mb-2 select2 selectsearchsupplier" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                      <option disabled>Search By Supplier</option>
+                      <option>All</option>
+                      <option *ngFor='let w of supplierA' [value]="w.id">Name : {{w.name}} || code : {{w.id}}</option>
+              </select>
+                                </div>
+                                <div class="col-lg-1 col-12 mb-2 lastU">
+                                    <!-- <label>PI_NO : </label><br> -->
+                                    <select class="form-control mb-2 select2 selectpin" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                    <option value="undefined" disabled selected>PI NO</option>
+                    <option>All</option>
+                    <option *ngFor='let w of pi; let e = index' [value]="e+1">{{e+1}}</option>
+            </select>
+                                </div>
+                                <div class="col-lg-1 col-12 mb-2 lastU">
+                                    <!-- <label>Category : </label><br> -->
+                                    <select class="form-control mb-2 select2 selectpin0" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                  <option value="undefined" disabled selected>Category</option>
+                  <option>All</option>
+                  <option *ngFor='let w of allCa;' [value]="w.id">{{w.name}}</option>
+          </select>
+                                </div>
+                                <!-- <div class='col-lg-1 col-12'>
+                                    <button (click)='printert()' class="btn btn-secondary" style="height: 54px !important;border: 1px solid black !important;width: 94.5% !important;"><i class="fas fa-print"></i></button>
+                                </div> -->
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                        <!-- add -->
+
+
+                        <form id="w5" #data='ngForm' (submit)='addS0(data.value)' style="direction: ltr !important;text-align: center;">
+                            <span id="form00" style="display: block;">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-sm-2 lastU mt-2" style='text-align: center;'>
+                            <select id="select00I" [(ngModel)]='supplier' name="supplier" class="form-control mt-2 select2" style="height: unset !important;" (change)='sho(supplierA,supplier)'>
+                        <option value="undefined" disabled selected>Supplier</option>
+                        <option *ngFor='let r of supplierA' [value]="r.id">Name : {{r.name}} || code : {{r.id}}</option>
+                        </select>
+                          </div>
+                          <div class="col-sm-2" style='text-align: center;'>
+                            <input style="height: 20px;"  class="text mt-2 d1 mb-2" type="number" placeholder="PI NO : {{piNo + 1}}" required="" disabled>
+                          </div>
+                          <div class="col-sm-2" style='text-align: center;'>
+                            <input style="height: 20px;" *ngIf='OrderDate000' (mouseenter)='OrderDate0010()'  class="text mt-2 d1" type="text" placeholder="Order Date" required="">
+                            <input style="height: 20px;" *ngIf='OrderDate010'  class="text mt-2 d1 fromDA" type="date" name="dateorder" [(ngModel)]='dateorder' required="">
+                          </div>
+                          <div class="col-sm-2" style='text-align: center;'>
+                            <input style="height: 20px;" *ngIf='OrderDate00' (mouseenter)='OrderDate001()'  class="text mt-2 d1" type="text" placeholder="Shipping Date" required="">
+                            <input style="height: 20px;" *ngIf='OrderDate01'  class="text mt-2 d1 toDA" type="date" name="datereceipt" [(ngModel)]='datereceipt' required="">
+                          </div>
+
+                          <div class="col-sm-2" style='text-align: center;'>
+                            <input style="height: 20px;"  class="text mt-2 d1" type="text" name="codeOut" [(ngModel)]='codeOut' placeholder="Item Code" required="">
+                          </div>
+                          <div class="col-sm-2" style='text-align: center;'>
+                            <input style="height: 20px;"  class="text mt-2 d1" type="text" name="description" [(ngModel)]='description' placeholder="Description" required="">
+                          </div>
+                          <div class="col-sm-2" style='text-align: center;'>
+                            <input  style="height: 20px;" class="text mt-2 d1 mb-2" type="text" name="dimensions" [(ngModel)]='dimensions' placeholder="Dimensions" required="">
+                          </div>
+                          <div class="col-sm-2" style='text-align: center;'>
+                            <input style="height: 20px;"  class="text mt-2 d1" type="text" name="fabric" [(ngModel)]='fabric' placeholder="Finishing/fabrics	" required="">
+                          </div>
+                          <div class="col-sm-2 mt-2 lastU" style='text-align: center;'>
+                            <select id="select00I0" [(ngModel)]='category' name="category" class="form-control mt-1 select2" style="height: unset !important;">
+                              <option value="undefined" disabled selected>Category</option>
+                              <option *ngFor='let r of allCa' [value]="r.id">{{r.name}}</option>
+                              </select>
+                            </div>
+                            <div class="col-sm-2" style='text-align: center;'>
+                              <input   class="text mt-2 d1 mb-2" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="" style="height: 20px;">
+                            </div>
+                            <div class="col-sm-2" style='text-align: center;'>
+                              <input  class="text mt-2 d1 mb-2" type="number" name="defect" [(ngModel)]='defect' placeholder="Defect" required="" style="height: 20px;">
+                            </div>
+                            <div class="col-sm-2" style='text-align: center;'>
+                              <input  class="text mt-2 d1 mb-2" type="text" name="notes" [(ngModel)]='notes' placeholder="Note" required="" style="height: 20px;">
+                            </div>
+                            <div class="col-sm-2" style='text-align: center;'>
+                              <input  class="text mt-2 d1 mb-2" type="number" name="price" [(ngModel)]='price' placeholder="Price" required="" style="height: 20px;">
+                            </div>
+                            <div class="col-sm-2" style='text-align: center;'>
+                              <input (click)='OrderDate00100()'  class="text mt-2 d1" type="text" placeholder="Images" required="" style="height: 20px;">
+                              <input style="overflow: hidden !important; display: none !important; height: 20px;" id="im0" (change)='img($event)'  class="text mt-2 d1" type="file" accept="image/*" placeholder="الصور" required="" multiple>
+                              <a *ngFor='let s of countImage; let x = index' id="but{{x}}"  class="but mt-2"><i class="fas fa-plus-circle"></i>
+                                <img draggable="false" id="put44{{x}}" style="width: 100%; display: block; height: 100%;">
+                              </a>
+                            </div>
+                            <div class="col-sm-2" style='text-align: center;'>
+                              <input (click)='OrderDate00100Another()'  class="text mt-2 d1" type="text" placeholder="Fabrics_Images" required="" style="height: 20px;">
+                              <input style="overflow: hidden !important; display: none !important; height: 20px;" id="im0Another" (change)='imgAnother($event)'  class="text mt-2 d1" type="file" accept="image/*" placeholder="الصور" required="" multiple>
+                              <a *ngFor='let s of countImageAnother; let x = index' id="butAnother{{x}}"  class="butAnother mt-2"><i class="fas fa-plus-circle"></i>
+                                <img draggable="false" id="put44Another{{x}}" style="width: 100%; display: block; height: 100%;">
+                              </a>
+                            </div>
+                            <div class="col-sm-2 mt-2 lastU" style='text-align: center;'>
+                              <select id="select00I00" [(ngModel)]='root' name="root" class="form-control mt-2 select2" style="height: unset !important;">
+                                <option value="undefined" disabled selected>Branch</option>
+                                <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-2" style='text-align: left;'>
+                          <input style="margin-top: .5rem !important; margin-bottom:0 !important;height: 20px;line-height: 0;width: 94.5% !important;" type="submit" value="Add">
+                          <div style="clear: both;"></div>
+                        </div>
+                        </div>
+                      </div>
+
+
+
+  <!-- <select [(ngModel)]='payno' name="payno" class="form-control mt-4" style="height: unset !important;">
+  <option [value]="payno" disabled>الطلبيه</option>
+  <option *ngFor='let r of paynoArr' [value]="r.id">{{r.name}}</option>
+  </select> -->
+            </span>
+                        </form>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <!-- excel file -->
+                        <form id='e5' #dataF='ngForm' (submit)='addS0F(dataF.value)' style="direction: ltr !important;">
+                            <span id="form00" style="display: block; text-align: center;">
+                              <div class='container-fluid'>
+                                <div class="row">
+                                  <div class="col-sm-2 mt-2 lastU" style='text-align: center;'>
+                                    <select id="select00IJJ" [(ngModel)]='supplier' name="supplier" class="form-control mt-2 select2" style="height: unset !important;" (change)='sho(supplierA,supplier)'>
+                                <option value="undefined" disabled selected>Supplier</option>
+                                <option *ngFor='let r of supplierA' [value]="r.id">Name : {{r.name}} || code : {{r.id}}</option>
+                                </select>
+                                  </div>
+                                  <div class="col-sm-2" style='text-align: center;'>
+                                    <input style='height: 20px;'  class="text mt-2 d1 mb-2" type="number" placeholder="PI NO : {{piNo + 1}}" required="" disabled>
+                                  </div>
+                                  <div class='col-sm-2'>
+                                    <input style='height: 20px;' *ngIf='OrderDate000' (mouseenter)='OrderDate0010()'  class="text mt-2 d1" type="text" placeholder="Order Date" required="">
+                                    <input style='height: 20px;' *ngIf='OrderDate010'  class="text mt-2 d1 fromDA" type="date" name="dateorder" [(ngModel)]='dateorder' required="">                                  </div>
+                                  <div class='col-sm-2'>
+                                    <input style='height: 20px;' *ngIf='OrderDate00' (mouseenter)='OrderDate001()'  class="text mt-2 d1" type="text" placeholder="Shipping Date" required="">
+                            <input style='height: 20px;' *ngIf='OrderDate01'  class="text mt-2 d1 toDA" type="date" name="datereceipt" [(ngModel)]='datereceipt' required="">
+                                  </div>
+                                  <div class='col-sm-2'>
+                                    <input id='fgy' style="overflow: hidden !important;height:54px;display: none !important;" name='excel' (change)='goFile($event)'   class="text mt-2 d1" type="file" placeholder="الصور" required="">
+                                    <button onclick='$("#fgy").trigger("click")' style="height: 28px !important; width: 94.5% !important;border: 1px solid black !important;line-height:0; " type="button" class="btn btn-secondary mb-2 mt-2">Add File Excel</button>
+                                  </div>
+                                  <div class="col-sm-2" style='text-align: left;'>
+                                    <input style="margin-top: .5rem !important;width: 94.5% !important; margin-bottom: .5rem;line-height: 0;height: 20px;" type="submit" value="Add">
+                                    <div style="clear: both;"></div>
+                                  </div>
+                                </div>
+                              </div>
+              </span>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="card-body" style="padding: 0 !important;">
+                <div class="table-responsive dfg" style="overflow: auto;height: 67.2vh;">
+
+
+                    <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                        <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                            <thead>
+                                <tr>
+                                    <th style='text-align: center;'>No.</th>
+                                    <th scope="col">Code</th>
+                                    <!-- <th scope="col">Order Date</th>
+                                    <th scope="col">Shipping Date</th> -->
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Dimensions</th>
+                                    <th scope="col">Finishing/fabrics</th>
+                                    <th scope="col" class='no printAll'>Fabrics_Images</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Defect</th>
+                                    <th scope="col">Notes</th>
+                                    <th scope="col">Branch</th>
+                                    <th scope="col" class="printAll">Price</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">PI.NO</th>
+                                    <th scope="col" class="printAll">Sales</th>
+                                    <!-- <th scope="col">User</th> -->
+                                    <th scope="col">Photo</th>
+                                    <th scope="col" class='no printAll'>Update</th>
+                                    <th scope="col" class='no printAll'>Delete</th>
+                                    <!-- <th scope="col" class='no'>Barcode</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let v of arre|categorySearch:categorySearch|serchCode:serchCode|placeSearch:placeSearch|searchSupplier:searchsupplier|selectpin:selectpin|dateCom:dateFrom:dateTo; let n = index;'>
+                                    <th scope="row" style='text-align: center;'>{{n+1}}</th>
+                                    <td data-title="Code">
+                                        <div style="width: 140px;display: inline-block;"><a style='display: block;'>{{v.code}}</a></div>
+                                    </td>
+                                    <!-- <td data-title="Order Date">{{v.dateorder}}</td>
+                                    <td data-title="Shipping Date">{{v.datereceipt}}</td> -->
+                                    <td data-title="Description">
+                                        <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.description}}</a></div>
+                                    </td>
+                                    <td data-title="Dimensions">
+                                        <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.dimensions}}</a></div>
+                                    </td>
+                                    <td data-title="Finishing/fabrics">
+                                        <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.fabric}}</a></div>
+                                    </td>
+                                    <td data-title="Fabrics_Images" class='no printAll'>
+                                        <img class='shadow-lg' (click)='showphoAnother(v.id)' (mouseenter)='goPic(v.url0.url0)' (mouseleave)='goPic0()' style='width:50px;height:50px;cursor: pointer;' [src]='v.url0.url0'>
+                                    </td>
+                                    <td data-title="Category">{{v.categoryname}}</td>
+                                    <td data-title="Qty">{{v.qty}}</td>
+                                    <td data-title="Defect">{{v.defect}}</td>
+                                    <td data-title="Notes">
+                                        <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.notes}}</a></div>
+                                    </td>
+                                    <td data-title="Branch">{{v.rootname}}</td>
+                                    <td data-title="Price" class="printAll">{{v.price}}</td>
+                                    <td data-title="Supplier">{{v.suppliername}}</td>
+                                    <td data-title="PI NO">{{v.pino}}</td>
+                                    <td data-title="Sales" class="printAll">{{v.sales}}</td>
+                                    <!-- <td data-title="Password" >{{v.username}}</td> -->
+                                    <td data-title="Photo" class='borhh'>
+                                        <img class='shadow-lg' (click)='showpho(v.id)' (mouseenter)='goPic(v.url.url)' (mouseleave)='goPic0()' style='width:50px;height:50px;cursor: pointer;' [src]='v.url.url'>
+                                    </td>
+                                    <td data-title="Update" class='no printAll'><button (click)='upI(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                                    <td data-title="Delete" class='no printAll'><button (click)='delI(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                    <!-- <td data-title="Barcode" class='no'><button (click)='barcode(v)' type="button" class="btn btn-dark" style="box-shadow: none; background-color: black;"><i class="fas fa-barcode"></i></button>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <img *ngIf='goImg' style='position: fixed;top:0;bottom: 0;right:0;left:0;margin-right: auto;margin-left: auto;margin-bottom: auto;margin-top: auto;z-index: 200000;' [src]='www'>
+        </div>
+    </div>
+    <!-- <section id="upd" *ngIf='imageShowA'>
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo" style="width:90%">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <h6 *ngIf='go' class="mt-0 mb-0" style="text-align: center; color: white;">PI NO : {{piNo + 1}}</h6>
+                <div class="agileits-top" style="padding-top: 0 !important;">
+                    <form #data='ngForm' (submit)='addS0(data.value)' style="direction: ltr !important;">
+                        <span id="form00" style="display: block;">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <select id="select00I" [(ngModel)]='supplier' name="supplier" class="form-control mt-2 select2" style="height: unset !important;" (change)='sho(supplierA,supplier)'>
+                            <option [value]="supplier" disabled>Supplier</option>
+                            <option *ngFor='let r of supplierA' [value]="r.id">{{r.name}}</option>
+                            </select>
+                              </div>
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <input *ngIf='OrderDate00' (click)='OrderDate001()'  class="text mt-2 d1" type="text" placeholder="Shipping Date" required="">
+                                <input *ngIf='OrderDate01'  class="text mt-2 d1" type="date" name="dateorder" [(ngModel)]='dateorder' required="">
+                              </div>
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <input *ngIf='OrderDate000' (click)='OrderDate0010()'  class="text mt-2 d1" type="text" placeholder="Order Date" required="">
+                                <input *ngIf='OrderDate010'  class="text mt-2 d1" type="date" name="datereceipt" [(ngModel)]='datereceipt' required="">
+                              </div>
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <input  class="text mt-2 d1" type="text" name="codeOut" [(ngModel)]='codeOut' placeholder="Item Code" required="">
+                              </div>
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <input  class="text mt-2 d1" type="text" name="description" [(ngModel)]='description' placeholder="Description" required="">
+                              </div>
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <input  class="text mt-2 d1 mb-2" type="text" name="dimensions" [(ngModel)]='dimensions' placeholder="Dimensions" required="">
+                              </div>
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <input  class="text mt-2 d1" type="text" name="fabric" [(ngModel)]='fabric' placeholder="Finishing/fabrics	" required="">
+                              </div>
+                              <div class="col-sm-6" style='text-align: center;'>
+                                <select id="select00I0" [(ngModel)]='category' name="category" class="form-control mt-1 select2" style="height: unset !important;">
+                                  <option [value]="category" disabled>Category</option>
+                                  <option *ngFor='let r of allCa' [value]="r.id">{{r.name}}</option>
+                                  </select>
+                                </div>
+                                <div class="col-sm-6" style='text-align: center;'>
+                                  <input  class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+                                </div>
+                                <div class="col-sm-6" style='text-align: center;'>
+                                  <input  class="text mt-2 d1 mb-2" type="number" name="price" [(ngModel)]='price' placeholder="Price" required="">
+                                </div>
+                                <div class="col-sm-6" style='text-align: center;'>
+                                  <input (click)='OrderDate00100()'  class="text mt-2 d1" type="text" placeholder="Images" required="">
+                                  <input style="overflow: hidden !important; display: none !important;" id="im0" (change)='img($event)'  class="text mt-2 d1" type="file" accept="image/*" placeholder="الصور" required="" multiple>
+                                  <a *ngFor='let s of countImage; let x = index' id="but{{x}}"  class="but mt-2"><i class="fas fa-plus-circle"></i>
+                                    <img draggable="false" id="put44{{x}}" style="width: 100%; display: block; height: 100%;">
+                                  </a>
+                                </div>
+                                <div class="col-sm-6" style='text-align: center;'>
+                                  <select id="select00I00" [(ngModel)]='root' name="root" class="form-control mt-2 select2" style="height: unset !important;">
+                                    <option [value]="root" disabled>Branch</option>
+                                    <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+                              </select>
+                            </div>
+                            </div>
+                          </div>
+
+
+
+<select [(ngModel)]='payno' name="payno" class="form-control mt-4" style="height: unset !important;">
+  <option [value]="payno" disabled>الطلبيه</option>
+  <option *ngFor='let r of paynoArr' [value]="r.id">{{r.name}}</option>
+  </select> -->
+    <!-- <input style="margin-top: 1rem !important;width: 97% !important;float: left;" type="submit" value="Add">
+    <div style="clear: both;"></div>
+    </span>
+    </form>
+    </div>
+    </div>
+    </div>
+</section> -->
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>
+<section id="upd-dd">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedd()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+            <input (click)='ok()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;padding: 5px !important;" type="submit" value="Delete confirmation">
+            <div style="clear: both;"></div>
+            </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-up">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUpI()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form id='formDekk' #data00='ngForm' (submit)='okUp(data00.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                      <label style="color: white;">Code : </label>
+                      <input style="height: 25px"  class="text mt-2 d1" type="text" name="codeOutU" [(ngModel)]='codeOutU' placeholder="كود المنتج" required="">
+                      <label style="color: white;" class="mt-2">Category : </label>
+                      <select [(ngModel)]='categoryU' name="categoryU" class="form-control select2 categorySel99" style="height: unset !important;">
+                        <option disabled>Category</option>
+                        <option *ngFor='let r of allCa' [value]="r.id">{{r.name}}</option>
+                        </select>
+                        <label style="color: white;display: block;" class="mt-2">Supplier : </label>
+            <select [(ngModel)]='supplierU' name="supplierU" class="form-control mt-4 select2 supplierSelect" style="height: unset !important;">
+        <option disabled>Supplier</option>
+        <option *ngFor='let r of supplierA' [value]="r.id">{{r.name}}</option>
+        </select>
+        <label style="color: white;display: block;" class="mt-2">Pino : </label>
+            <select [(ngModel)]='paynoU' name="paynoU" class="form-control" style="height: 25px !important; padding:0 !important;">
+          <option disabled>Pino</option>
+          <option *ngFor='let r of paynoArr0' [value]="r">{{r}}</option>
+          </select>
+          <label style="color: white;"  class="mt-2">Price : </label>
+                      <input style="height: 25px"  class="text mt-2 d1" type="number" name="priceU" [(ngModel)]='priceU' placeholder="Price" required="">
+                      <label style="color: white;"  class="mt-2">Description : </label>
+                      <input style="height: 25px"  class="text mt-2 d1" type="text" name="descriptionU" [(ngModel)]='descriptionU' placeholder="Description" required="">
+                      <label style="color: white;" class="mt-2">Dimensions : </label>
+                      <input style="height: 25px"  class="text mt-2 d1" type="text" name="dimensionsU" [(ngModel)]='dimensionsU' placeholder="Dimensions" required="">
+                      <label style="color: white;" class="mt-2">Fabric : </label>
+                      <input style="height: 25px"  class="text mt-2 d1" type="text" name="fabricU" [(ngModel)]='fabricU' placeholder="Finishing/fabrics" required="">
+                        <label style="color: white;" class="mt-2">Qty : </label>
+                      <input style="height: 25px" class="text mt-2 d1" type="number" name="qtyU" [(ngModel)]='qtyU' placeholder="Qty" required="">
+                      <label style="color: white;" class="mt-2">Defect : </label>
+                      <input style="height: 25px" class="text mt-2 d1" type="number" name="defectU" [(ngModel)]='defectU' placeholder="Defect" required="">
+                      <label style="color: white;" class="mt-2">Notes : </label>
+                      <input style="height: 25px" class="text mt-2 d1" type="text" name="notesU" [(ngModel)]='notesU' placeholder="Notes" required="">
+                      <!-- <input  class="text mt-2 d1" type="number" name="priceU" [(ngModel)]='priceU' placeholder="السعر" required=""> -->
+                      <ng-container *ngIf='imageShowU'>
+                      <!-- <input (click)='OrderDate001000()'  class="text mt-2 d1" type="text" placeholder="Images" required=""> -->
+                      <label style="color: white;" class="mt-2">Images : </label>
+                      <input style="overflow: hidden !important; height: 25px; padding: 0 !important" id="im00" (change)='img0($event)'  class="text mt-2 d1" type="file" accept="image/*" placeholder="الصور" required="" multiple>
+                      <a *ngFor='let s of countImage0; let x = index' id="but0{{x}}"  class="but0 mt-1"><i class="fas fa-plus-circle"></i>
+                        <img draggable="false" id="put440{{x}}" style="width: 100%; display: block; height: 100%;">
+                      </a>
+                    </ng-container>
+                      <ng-container *ngIf='imgget'>
+                          <div style='display: inline-block' *ngFor='let r of arrI;let f = index'class='asd00{{f}} mt-1'>
+                          <a class="but" style="display: inline-block !important; position: relative;">
+                            <span class="asd" style="position: absolute; top: 0; right: 0;width: 100%;height: 100%; background: rgba(0, 0, 0, 0.8)">
+                              <i (click)='deleteImage(r.id , f)' style='color: red; font-size: 13px;position: absolute; top:5%;right: 45%; z-index:200000;' class="fas fa-trash-alt"></i>
+                            </span>
+                    <img style="width: 100%; height: 100% !important; display: block;" [src]="r.url">
+                    </a>
+            </div>
+            </ng-container>
+            <!--Another-->
+            <ng-container *ngIf='imageShowUAnother'>
+                <!-- <input (click)='OrderDate001000()'  class="text mt-2 d1" type="text" placeholder="Images" required=""> -->
+                <label style="color: white;display: block;" class="mt-2">Fabrics_Images : </label>
+                <input style="overflow: hidden !important; height: 25px; padding: 0 !important" id="im00Another" (change)='img0Another($event)' class="text mt-2 d1" type="file" accept="image/*" placeholder="الصور" required="" multiple>
+                <a *ngFor='let s of countImage0Another; let x = index' id="but0Another{{x}}" class="but0Another mt-1"><i class="fas fa-plus-circle"></i>
+                <img draggable="false" id="put440Another{{x}}" style="width: 100%; display: block; height: 100%;">
+              </a>
+            </ng-container>
+            <ng-container *ngIf='imggetAnother'>
+                <div style='display: inline-block' *ngFor='let r of arrIAnother;let f = index' class='asd00Another{{f}} mt-1'>
+                    <a class="butAnother" style="display: inline-block !important; position: relative;">
+                        <span class="asd" style="position: absolute; top: 0; right: 0;width: 100%;height: 100%; background: rgba(0, 0, 0, 0.8)">
+                      <i (click)='deleteImageAnother(r.id , f)' style='color: red; font-size: 13px;position: absolute; top:5%;right: 45%; z-index:200000;' class="fas fa-trash-alt"></i>
+                    </span>
+                        <img style="width: 100%; height: 100% !important; display: block;" [src]="r.url">
+                    </a>
+                </div>
+            </ng-container>
+
+            <label style="color: white;display: block;" class="mt-2">Branch : </label>
+            <select [(ngModel)]='rootU0' name="rootU0" class="form-control" style="height: 25px !important;padding: 0 !important">
+              <option disabled>Branch</option>
+              <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+        </select>
+            <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;padding: 5px !important;" type="submit" value="Update">
+            <div style="clear: both;"></div>
+            </span>
+            </form>
+        </div>
+    </div>
+    </div>
+</section>
+<section id="updPho">
+    <button (click)='closePhot()' type="button" class="btn btn-danger m-4" style="box-shadow: none;"><i class="fas fa-times " style="color: white; cursor: pointer;"></i></button>
+    <div style="text-align: center !important; overflow: hidden !important;">
+        <div style="height: 80vh;width: 50%;display: inline-block; overflow: hidden !important;" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" *ngIf='qwss'>
+                <div class="carousel-item active">
+                    <img style="width: 100%;height: 80vh;" [src]="arrImage[0].url" class="d-block" alt="...">
+                </div>
+                <div *ngFor='let f of arrImage|slice:1; let ff = index;' class="carousel-item">
+                    <img style="width: 100%;height: 80vh;" [src]="arrImage[ff + 1].url" class="d-block" alt="...">
+                </div>
+            </div>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:gray; border-radius:50%; margin-right: 10px;" class="carousel-control-prev shadow-lg" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span style="margin-top: 25%;" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:gray; border-radius:50%; margin-left: 10px;" class="carousel-control-next shadow-lg" href="#carouselExampleControls" role="button" data-slide="next">
+                <span style="margin-top: 25%;" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- <section id="updF">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeF()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <h6 *ngIf='go' class="mt-2" style="text-align: center; color: white;">رقم الطلبيه {{piNo + 1}} من هذا المورد</h6>
+            <div class="agileits-top">
+                <form #dataF='ngForm' (submit)='addS0F(dataF.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                    <select   name="supplier"   class="form-control mt-4 addSoClassName js-example-basic-multiple" style="height: unset !important;" (change)='sho(supplierA,supplier)'>
+                      <option [value]="supplier" disabled>المورد</option>
+                      <option *ngFor='let r of supplierA' [value]="r.id">{{r.name}}</option>
+                      </select>
+                      <input  class="text mt-2 d1" type="datetime-local" name="dateorder" [(ngModel)]='dateorder' placeholder="وقت طلب االأوردر" required="">
+                      <input  class="text mt-2 d1" type="datetime-local" name="datereceipt" [(ngModel)]='datereceipt' placeholder="وقت الأستلام" required="">
+                      <input style="overflow: hidden !important;" name='excel' (change)='goFile($event)'   class="text mt-2 d1" type="file" placeholder="الصور" required="">
+          <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="أضافة">
+          <div style="clear: both;"></div>
+          </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<section id="upd-ddO00">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeddP()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+                <input style="height:25px" class="text mt-2 d1" type="number" name="discoundPrint" [(ngModel)]='discoundPrint' placeholder="Discound" required="">
+          <input (click)='okP()' style="margin-top: 1rem !important;width: 94.5% !important;float: left; padding: 5px !important;" type="submit" value="Print">
+          <div style="clear: both;"></div>
+          </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="printall" style="width: 500px;height: 300px;display: none;margin: 0 auto;" class="p-3 mt-5">
+    <h2 style="text-align: center;" class="mb-3">NOGAL FURNITURE</h2>
+    <p style="color: black;">{{categoryPrint}}</p>
+    <p style="color: black;">Dim : {{dimPrint}}</p>
+    <svg id="barcode" class="mt-3 mb-3"></svg>
+    <p style="color: black;"><span *ngIf='dis'>Price : </span> {{pricePrint}}</p>
+    <p style="color: black;" *ngIf='dis'><span>After : </span> {{pricePrint0}}</p>
+
+</div>

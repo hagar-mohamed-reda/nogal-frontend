@@ -1,0 +1,176 @@
+<section *ngIf='show' style="padding: 20px;padding-top: 10px !important;padding-bottom: 0 !important;" class='no0'>
+    <div class="col-12 mt-3">
+        <div class="card">
+            <div class="card-header">
+                <h4 style="float: right;">جميع الطلبيات</h4>
+                <div style="clear: both;"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-12">
+                            <input placeholder="أبحث بالأسم" [(ngModel)]='searchName' id='plaho' class="p-1" type="text" style="width: 100%; height: 45px;border: 1px solid black !important; color: black !important;">
+                        </div>
+                    </div>
+                </div>
+                <button (click)='addO()' style="box-shadow:none; display: block;background-color: green !important;" type="button" class="btn btn-success mt-3">أضافة طلبية</button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th>الترتيب</th>
+                                <th>الأسم</th>
+                                <th>معاد الطلب</th>
+                                <th>معاد الأستلام</th>
+                                <th>الوصف</th>
+                                <th>عدد المنتجات</th>
+                                <th>السعر</th>
+                                <th>المدفوع</th>
+                                <th>المتبقى</th>
+                                <th>المبيعات</th>
+                                <th>واضع الطلبية</th>
+                                <th>أضافة مدفوعات</th>
+
+                                <th>مسح</th>
+                                <th>تعديل</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let v of arre0|searchName:searchName|serchCode:serchCode|rootSearch:rootSearch|controlSearch:controlSearch; let n = index;'>
+                                <th scope="row">{{n+1}}</th>
+                                <td>{{v.name}}</td>
+                                <td>{{v.dateorder}}</td>
+                                <td>{{v.datereceipt}}</td>
+                                <td>{{v.description}}</td>
+                                <td>{{v.numberofitems}}</td>
+                                <td>{{v.price}}</td>
+                                <td>{{v.cashmoney}}</td>
+                                <td>{{v.cashno}}</td>
+                                <td>{{v.sales}}</td>
+                                <td>{{v.whoaddname}}</td>
+                                <td><button (click)='delSPay(v)' type="button" class="btn btn-warning" style="box-shadow: none;"><i class="fas fa-plus"></i></button></td>
+                                <td><button (click)='delI(v.id , v.name)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                                <td><button (click)='upI(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-copy"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data='ngForm' (submit)='addS0(data.value)' style="direction: rtl !important;">
+                        <span id="form00" style="display: block;">
+            <input  class="text mt-2 d1" type="text" name="name" [(ngModel)]='name' placeholder="الأسم" required="">
+            <input  class="text mt-2 d1" type="datetime-local" name="dateorder" [(ngModel)]='dateorder' placeholder="وقت طلب االأوردر" required="">
+            <input  class="text mt-2 d1" type="datetime-local" name="datereceipt" [(ngModel)]='datereceipt' placeholder="وقت الأستلام" required="">
+            <input  class="text mt-2 d1" type="text" name="description" [(ngModel)]='description' placeholder="الوصف" required="">
+            <input  class="text mt-2 d1" type="number" name="numberofitems" [(ngModel)]='numberofitems' placeholder="عدد المنتجات" required="">
+            <input  class="text mt-2 d1" type="number" name="price" [(ngModel)]='price' placeholder="السعر" required="">
+              <input style="margin-top: 1rem !important;width: 94.5% !important;float: right;" type="submit" value="أضافة">
+              <div style="clear: both;"></div>
+              </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>
+<section id="upd-dd">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedd()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+          <input (click)='ok()' style="margin-top: 1rem !important;width: 94.5% !important;float: right;" type="submit" value="تأكيد المسح">
+          <div style="clear: both;"></div>
+          </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-up">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUpI()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data00='ngForm' (submit)='okUp(data00.value)' style="direction: rtl !important;">
+                    <span id="form00" style="display: block;">
+                      <input  class="text mt-2 d1" type="text" name="nameU" [(ngModel)]='nameU' placeholder="الأسم" required="">
+                      <input  class="text mt-2 d1" type="datetime-local" name="dateorderU" [(ngModel)]='dateorderU' placeholder="وقت طلب االأوردر" required="">
+                      <input  class="text mt-2 d1" type="datetime-local" name="datereceiptU" [(ngModel)]='datereceiptU' placeholder="وقت الأستلام" required="">
+                      <input  class="text mt-2 d1" type="text" name="descriptionU" [(ngModel)]='descriptionU' placeholder="الوصف" required="">
+                      <input  class="text mt-2 d1" type="number" name="numberofitemsU" [(ngModel)]='numberofitemsU' placeholder="عدد المنتجات" required="">
+                      <!-- <input  class="text mt-2 d1" type="number" name="priceU" [(ngModel)]='priceU' placeholder="السعر" required=""> -->
+                      <input style="margin-top: 1rem !important;width: 94.5% !important;float: right;" type="submit" value="تعديل">
+                      <div style="clear: both;"></div>
+            </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section id="updPho">
+    <button (click)='closePhot()' type="button" class="btn btn-danger m-4" style="box-shadow: none;"><i class="fas fa-times " style="color: white; cursor: pointer;"></i></button>
+    <div style="text-align: center !important; overflow: hidden !important;">
+        <div style="height: 80vh;width: 50%;display: inline-block; overflow: hidden !important;" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" *ngIf='qwss'>
+                <div class="carousel-item active">
+                    <img style="width: 100%;height: 80vh;" [src]="arrImage[0].url" class="d-block" alt="...">
+                </div>
+                <div *ngFor='let f of arrImage| slice:1;' class="carousel-item">
+                    <img style="width: 100%;height: 80vh;" [src]="f.url" class="d-block" alt="...">
+                </div>
+            </div>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:green; border-radius:50%; margin-left: 10px;" class="carousel-control-prev shadow-lg" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span style="margin-top: 25%;" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:green; border-radius:50%; margin-right: 10px;" class="carousel-control-next shadow-lg" href="#carouselExampleControls" role="button" data-slide="next">
+                <span style="margin-top: 25%;" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section> -->
+<section id="upd-ddGoP">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeddGoP()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data1020='ngForm' (submit)='Go12(data1020.value)' style="direction: rtl !important;">
+                    <span id="form00" style="display: block;">
+      <input  class="text mt-2 d1" type="number" name="payGo" [(ngModel)]='payGo' placeholder="أدخل المبلغ" required="">
+      <input  class="text mt-2 d1" type="text" name="notesGo" [(ngModel)]='notesGo' placeholder="ملاحظة" required="">
+      <input style="margin-top: 1rem !important;width: 94.5% !important;float: right;" type="submit" value="أضافة">
+      <div style="clear: both;"></div>
+      </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

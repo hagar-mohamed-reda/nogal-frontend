@@ -1,0 +1,161 @@
+<section *ngIf='show' style="padding: 20px;padding-top: 10px !important;padding-bottom: 0 !important;" class='no0'>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 style="float: left;">All Category : </h4>
+                <div style="clear: both;margin-bottom: 5px;"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-12 mb-2">
+                            <input placeholder="Search By Category Name" [(ngModel)]='searchName' id='plaho' class="p-1" type="text" style="width: 100%; height: 25px;border: 1px solid black !important; color: black !important;">
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <button (click)='addC()' style="height: 32px !important; width: 94.5% !important;border: 1px solid black !important;line-height: 0; " type="button" class="btn btn-secondary mb-2">Add Main Categoty</button>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <button (click)='addC00()' style="height: 32px !important; width: 94.5% !important;border: 1px solid black !important;line-height: 0; " type="button" class="btn btn-secondary mb-2">Add a Subcategory</button>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <button (click)='delCa()' style="height: 32px !important; width: 94.5% !important;border: 1px solid black !important;line-height: 0; " type="button" class="btn btn-danger mb-2">Delete Category</button>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <button (click)='upCa()' style="height: 32px !important; width: 94.5% !important;border: 1px solid black !important;line-height: 0; " type="button" class="btn btn-secondary mb-2">Update Category</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="card-body" style="padding: 0 !important;">
+                <div class="mt-3" id="using_json_2">
+
+                </div>
+                <div id="event_result" style="text-align: center;"></div>
+                <br>
+
+                <button type="button" class="btn btn-dark" style="box-shadow: none; width: 100%; background-color: black !important;">Main Category</button>
+                <div class="table-responsive" style="overflow: auto;height: 287px;">
+                    <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                        <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">No.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let v of allCa|searchName:searchName; let n = index;'>
+                                    <th scope="row" style="text-align: center;">{{n+1}}</th>
+                                    <td data-title="Name">{{v.name}}</td>
+                                    <td data-title="Code">{{v.id}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-dark" style="box-shadow: none; width: 100%; background-color: black !important;">Subcategory</button>
+                <div class="table-responsive" style="overflow: auto;height: 287px;">
+                    <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                        <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">No.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let v of arrRoot012  |searchName:searchName; let n = index;'>
+                                    <th scope="row" style="text-align: center;">{{n+1}}</th>
+                                    <td data-title="Name">{{v.name}}</td>
+                                    <td data-title="Root">{{v.id}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data='ngForm' (submit)='addCa(data.value)' style="direction: ltr !important;">
+                        <span id="form00" style="display: block;">
+                          <label style="color: white;">Name : </label>
+            <input style="height: 25px;"  class="text mt-2 d1" type="text" name="name" [(ngModel)]='name' placeholder="Name" required="">
+              <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+              <div style="clear: both;"></div>
+              </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>
+<section id="upd-dd">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedC()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+          <input (click)='ok()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Delete confirmation">
+          <div style="clear: both;"></div>
+          </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-up">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUpCa()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data00='ngForm' (submit)='okUp(data00.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                      <label style="color: white;">Name : </label>
+                <input style="height: 25px;"  class="text mt-2 d1" type="text" name="nameU" [(ngModel)]='nameU' placeholder="Name" required="">
+                  <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Update">
+                  <div style="clear: both;"></div>
+            </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

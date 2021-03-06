@@ -1,0 +1,64 @@
+<section class="logH">
+    <div style="width: 100%;height:100%;position: absolute;top: 0;left: 0;background-color: rgba(0, 0, 0, 0.4) !important;" class="pagePogin"></div>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card shadow-lg">
+                <div class="card-header">
+                    <!-- <h3>Sign In</h3> -->
+                    <img style="border-radius: 0 !important;width: 120px;height: 70px;" draggable="false" src="../../assets/video/logo.png" alt="person" class="img-fluid rounded-circle">
+
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form #loginAdmin='ngForm' (submit)='login(loginAdmin.value)'>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input name="email" [(ngModel)]='email' type="text" class="form-control" placeholder="Email">
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input name="password" [(ngModel)]='password' type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="row align-items-center remember">
+                            <input type="checkbox">Remember Me
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn float-right login_btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer" style="text-align: center">
+                    <!-- <h3 style="color: white;font-weight: bolder;text-align: center;cursor: default;">N<span style="color:green; font-size: 35px !important;">O</span><span style="color:green; font-size: 35px !important;">G<span style="color:green; font-size: 35px !important;">A</span></span>L</h3> -->
+                    <img style="border-radius: 0 !important;width: 120px;height: 70px;" draggable="false" src="../../assets/video/logo.png" alt="person" class="img-fluid rounded-circle">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>

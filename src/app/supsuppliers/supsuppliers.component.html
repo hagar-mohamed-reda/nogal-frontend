@@ -1,0 +1,327 @@
+<section *ngIf='show' style="padding: 20px;padding-top: 10px !important;padding-bottom: 0 !important;" class='no0'>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header no">
+                <h4 style="float: left;">All Supplier : </h4>
+                <div style="clear: both;margin-bottom: 5px;"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-12">
+                            <input placeholder="Search By Name" [(ngModel)]='searchName' id='plaho' class="p-1 mb-2" type="text" style="width: 100%; height: 25px;border: 1px solid black !important; color: black !important;">
+                        </div>
+                        <div class="col-lg-3 col-12 lastU">
+                            <select [(ngModel)]='serchCodeSupplier' class="serchCodeSupplier mb-2 select2 selsea" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                        <option disabled>Search By Code</option>
+                        <option>All</option>
+                        <option *ngFor='let x of arre' [value]="x.id">code : {{x.id}} || name: {{x.name}}</option>
+                </select>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <button (click)='addS()' style="height: 28px !important; width: 94.5% !important;border: 1px solid black !important;line-height:0; " type="button" class="btn btn-secondary mb-2">Add Supplier</button>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <button (click)='trigger()' style="height: 28px !important; width: 94.5% !important;border: 1px solid black !important;line-height:0;" type="button" class="btn btn-secondary mb-2">Add Supplier By Excel File</button>
+                            <input id="excel" style="overflow: hidden !important;display: none;" name='excel' (change)='goFile($event)' class="text mt-2 d1" type="file" placeholder="الصور" required="" accept=".xlsx" />
+                        </div>
+                        <div class='col-lg-1 col-12'>
+                            <button (click)='printert()' class="btn btn-secondary" style="height: 28px !important;border: 1px solid black !important;width: 94.5% !important;line-height:0;"><i class="fas fa-print"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body print0N" style="padding: 0 !important;">
+                <div class="table-responsive dfg" style="overflow: auto;height: 67.2vh;">
+
+
+                    <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                        <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                            <thead>
+                                <tr>
+                                    <th style='text-align: center;'>No.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Adress</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Pi_No</th>
+                                    <th scope="col">Notes</th>
+                                    <th scope="col" class='no'>Update</th>
+                                    <th scope="col" class='no'>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let v of arre|searchName:searchName|serchCodeSupplier:serchCodeSupplier; let n = index;'>
+                                    <th scope="row" style='text-align: center;'>{{n+1}}</th>
+                                    <td data-title="Name">{{v.name}}</td>
+                                    <td data-title="Code">{{v.id}}</td>
+                                    <td data-title="Email">{{v.email}}</td>
+                                    <td data-title="Adress">{{v.adress}}</td>
+                                    <td data-title="Phone">0{{v.phone}}</td>
+                                    <td data-title="Pi_No" (click)='waw(v)' style="cursor: pointer;">{{v.pinoS}}</td>
+                                    <td data-title="Notes">{{v.notes}}</td>
+                                    <td data-title="Update" class='no'><button (click)='upU(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                                    <td data-title="Delete" class='no'><button (click)='delS(v.id , v.name)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data='ngForm' (submit)='addS0(data.value)' style="direction: ltr !important;">
+                        <span id="form00" style="display: block;">
+                          <label style="color: white;">Name : </label>
+              <input style="height: 25px;"  class="text mt-2 d1" type="text" name="name" [(ngModel)]='name' placeholder="Name" required="">
+              <label style="color: white;" class="mt-2">Email : </label>
+              <input style="height: 25px;"  class="text mt-2 d1" type="text" name="email" [(ngModel)]='email' placeholder="Email" required="">
+              <label style="color: white;" class="mt-2">Adress : </label>
+              <input style="height: 25px;"  class="text mt-2 d1" type="text" name="adress" [(ngModel)]='adress' placeholder="Adress" required="">
+              <label style="color: white;" class="mt-2">Notes : </label>
+              <input style="height: 25px;"  class="text mt-2 d1" type="text" name="notes" [(ngModel)]='notes' placeholder="Add Notes" required="">
+              <label style="color: white;" class="mt-2">Phone : </label>
+              <input style="height: 25px;"  class="text mt-2 d1" type="number" name="phone" [(ngModel)]='phone' placeholder="Phone" required="">
+              <!-- <input  class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="أضافة مدفوعات" required=""> -->
+                <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+                <div style="clear: both;"></div>
+                </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>
+<section id="upd-dd">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedd()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+            <input (click)='ok()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Delete confirmation">
+            <div style="clear: both;"></div>
+            </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-up">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUp()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data='ngForm' (submit)='okUp(data.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                      <label style="color: white;">Name : </label>
+                  <input style="height: 25px;"  class="text mt-2 d1" type="text" name="nameU" [(ngModel)]='nameU' placeholder="Name" required="">
+                  <label style="color: white;" class="mt-2">Email : </label>
+                  <input style="height: 25px;"  class="text mt-2 d1" type="text" name="emailU" [(ngModel)]='emailU' placeholder="Email" required="">
+                  <label style="color: white;" class="mt-2">Adress : </label>
+                  <input style="height: 25px;"  class="text mt-2 d1" type="text" name="adressU" [(ngModel)]='adressU' placeholder="Adress" required="">
+                  <label style="color: white;" class="mt-2">Phone : </label>
+                  <input style="height: 25px;"  class="text mt-2 d1" type="number" name="phoneU" [(ngModel)]='phoneU' placeholder="Phone" required="">
+                  <label style="color: white;" class="mt-2">Notes : </label>
+                  <input style="height: 25px;"  class="text mt-2 d1" type="text" name="notesU" [(ngModel)]='notesU' placeholder="Notes" required="">
+                    <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+                    <div style="clear: both;"></div>
+              </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class='print0N' id="upd023" style="overflow-y: scroll;">
+
+
+    <div class="card-body card text-center m-5 print0N" style="padding: 10px !important;">
+        <i id="printUU" (click)='close0093()' class="fas fa-times m-4" style="color: black; cursor: pointer; text-align: right;"></i>
+        <div class='container-fluid'>
+            <div class="row">
+                <div class='col-2'>
+                    <select change='convert()' [(ngModel)]='pino' class="form-control mb-2" style="height: 25px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                <option *ngFor='let x of arreQ;let y = index;' [value] ='y+1'>{{y+1}}</option>
+        </select>
+
+                </div>
+                <div class='col-2'>
+                    <button (click)='printert0()' class="btn btn-secondary" style="height: 25px !important;border: 1px solid black !important;width: 100% !important;line-height:0;"><i class="fas fa-print"></i></button>
+                </div>
+            </div>
+        </div>
+        <span style="display: none;" *ngFor='let rr of arre0009|searchSupplier:searchsupplier|selectpin:pino; let xx = index;' id="ss{{xx}}">
+          <button *ngIf='dfgt' style='margin-top: auto;width: 100%;' class='btn btn-secondary mt-3' type="submit"><a style="float: left;">PI NO : {{pino}}</a><a style="clear: both;"></a> <a style="text-align: center;"> Order Date : {{rr.dateorder|date: 'dd-MM-yyyy'}}</a> <a style="float: right;"> Shipping Date : {{rr.datereceipt|date: 'dd-MM-yyyy'}}</a><a style="clear: both;"></a></button>
+        </span>
+        <div class="table-responsive dfg" style="overflow: auto;height: 450px;">
+
+
+            <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                    <thead>
+                        <tr>
+                            <th scope="col" style='text-align:center;'>Code</th>
+                            <!-- <th scope="col">Order Date</th>
+                      <th scope="col">Shipping Date</th> -->
+                            <th scope="col">Description</th>
+                            <th scope="col">Dimensions</th>
+                            <th scope="col">Finishing/fabrics</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Branch</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Supplier</th>
+                            <th scope="col">Sales</th>
+                            <!-- <th scope="col">User</th> -->
+                            <th scope="col" class='no'>Photo</th>
+                            <!-- <th scope="col" class='no'>Update</th>
+                      <th scope="col" class='no'>Delete</th>
+                      <th scope="col" class='no'>Barcode</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let v of arre0009|searchSupplier:searchsupplier|selectpin:pino; let n = index;'>
+                            <td data-title="Code" style='text-align:center;'>{{v.code}}</td>
+                            <!-- <td data-title="Order Date">{{v.dateorder}}</td>
+                    <td data-title="Shipping Date">{{v.datereceipt}}</td> -->
+                            <td data-title="Description">
+                                <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.description}}</a></div>
+                            </td>
+                            <td data-title="Dimensions">
+                                <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.dimensions}}</a></div>
+                            </td>
+                            <td data-title="Finishing/fabrics">
+                                <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.fabric}}</a></div>
+                            </td>
+                            <td data-title="Category">{{v.categoryname}}</td>
+                            <td data-title="Qty">{{v.qty}}</td>
+                            <td data-title="Branch">{{v.rootname}}</td>
+                            <td data-title="Price">{{v.price}}</td>
+                            <td data-title="Supplier">{{v.suppliername}}</td>
+                            <td data-title="Sales">{{v.sales}}</td>
+                            <!-- <td data-title="Password" >{{v.username}}</td> -->
+                            <td data-title="Photo" class='no'>
+                                <img class='shadow-lg' (click)='showpho(v.id)' (mouseenter)='goPic(v.url.url)' (mouseleave)='goPic0()' style='width:80px;height:80px;cursor:pointer;' [src]='v.url.url'>
+                            </td>
+                            <!-- <td data-title="Update" class='no'><button (click)='upI(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                    <td data-title="Delete" class='no'><button (click)='delI(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                    <td data-title="Barcode" class='no'><button (click)='barcode(v)' type="button" class="btn btn-dark" style="box-shadow: none; background-color: black;"><i class="fas fa-barcode"></i></button>
+                    </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <img *ngIf='goImg' style='position: fixed;top:0;bottom: 0;right:0;left:0;margin-right: auto;margin-left: auto;margin-bottom: auto;margin-top: auto;z-index: 200000;' [src]='www'>
+</section>
+<section id="updPho">
+    <button (click)='closePhot()' type="button" class="btn btn-danger m-4" style="box-shadow: none;"><i class="fas fa-times " style="color: white; cursor: pointer;"></i></button>
+    <div style="text-align: center !important; overflow: hidden !important;">
+        <div style="height: 80vh;width: 50%;display: inline-block; overflow: hidden !important;" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" *ngIf='qwss'>
+                <div class="carousel-item active">
+                    <img style="width: 100%;height: 80vh;" [src]="arrImage[0].url" class="d-block" alt="...">
+                </div>
+                <div *ngFor='let f of arrImage|slice:1; let ff = index;' class="carousel-item">
+                    <img style="width: 100%;height: 80vh;" [src]="arrImage[ff + 1].url" class="d-block" alt="...">
+                </div>
+            </div>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:gray; border-radius:50%; margin-right: 10px;" class="carousel-control-prev shadow-lg" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span style="margin-top: 25%;" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:gray; border-radius:50%; margin-left: 10px;" class="carousel-control-next shadow-lg" href="#carouselExampleControls" role="button" data-slide="next">
+                <span style="margin-top: 25%;" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="print0">
+    <button *ngIf='dfgt' style='margin-top: auto;width: 100%;' class='btn btn-secondary mt-3' type="submit"><a style="float: left;">PI NO : {{pino}}</a><a style="clear: both;"></a> <a style="text-align: center;"> Order Date : {{arreQ[pino - 1].from|date: 'dd-MM-yyyy'}}</a> <a style="float: right;"> Shipping Date : {{arreQ[pino - 1].to|date: 'dd-MM-yyyy'}}</a><a style="clear: both;"></a></button>
+    <div class="table-responsive dfg print0P" style="overflow: auto;height: 450px;">
+
+
+        <div class="container" style="margin: 0 !important;max-width:100% !important;">
+            <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                <thead>
+                    <tr>
+                        <th scope="col" style='text-align:center;'>Code</th>
+                        <!-- <th scope="col">Order Date</th>
+                      <th scope="col">Shipping Date</th> -->
+                        <th scope="col">Description</th>
+                        <th scope="col">Dimensions</th>
+                        <th scope="col">Finishing/fabrics</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Supplier</th>
+                        <th scope="col">Sales</th>
+                        <!-- <th scope="col">User</th> -->
+                        <th scope="col">Photo</th>
+                        <!-- <th scope="col" class='no'>Update</th>
+                      <th scope="col" class='no'>Delete</th>
+                      <th scope="col" class='no'>Barcode</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let v of arre0009|searchSupplier:searchsupplier|selectpin:pino; let n = index;'>
+                        <td data-title="Code" style='text-align:center;'>{{v.code}}</td>
+                        <!-- <td data-title="Order Date">{{v.dateorder}}</td>
+                    <td data-title="Shipping Date">{{v.datereceipt}}</td> -->
+                        <td data-title="Description">
+                            <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.description}}</a></div>
+                        </td>
+                        <td data-title="Dimensions">
+                            <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.dimensions}}</a></div>
+                        </td>
+                        <td data-title="Finishing/fabrics">
+                            <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.fabric}}</a></div>
+                        </td>
+                        <td data-title="Category">{{v.categoryname}}</td>
+                        <td data-title="Qty">{{v.qty}}</td>
+                        <td data-title="Branch">{{v.rootname}}</td>
+                        <td data-title="Price">{{v.price}}</td>
+                        <td data-title="Supplier">{{v.suppliername}}</td>
+                        <td data-title="Sales">{{v.sales}}</td>
+                        <!-- <td data-title="Password" >{{v.username}}</td> -->
+                        <td data-title="Photo">
+                            <img class='shadow-lg' (click)='showpho(v.id)' (mouseenter)='goPic(v.url.url)' (mouseleave)='goPic0()' style='width:80px;height:80px;cursor:pointer;' [src]='v.url.url'>
+                        </td>
+                        <!-- <td data-title="Update" class='no'><button (click)='upI(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                    <td data-title="Delete" class='no'><button (click)='delI(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                    <td data-title="Barcode" class='no'><button (click)='barcode(v)' type="button" class="btn btn-dark" style="box-shadow: none; background-color: black;"><i class="fas fa-barcode"></i></button>
+                    </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

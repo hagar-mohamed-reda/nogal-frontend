@@ -1,0 +1,203 @@
+<section *ngIf='show' style="padding: 20px;padding-top: 10px !important;padding-bottom: 0 !important;" class='no0'>
+    <div class="col-12 mt-3">
+        <div class="card">
+            <div class="card-header">
+                <h4 style="float: right;">التقارير</h4>
+                <div style="clear: both;"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-12">
+                            <select [(ngModel)]='searchName' class="form-control" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                      <option disabled>أبحث بالشخص</option>
+                      <option>الكل</option>
+                      <option *ngFor='let x of arre0' [value]="x.id">{{x.name}}</option>
+              </select>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <select [(ngModel)]='placeSearch' class="form-control" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                          <option disabled>أبحث بالفرع</option>
+                          <option>الكل</option>
+                          <option *ngFor='let w of rootA' [value]="w.id">{{w.name}}</option>
+                  </select>
+                        </div>
+                    </div>
+                </div>
+                <button (click)='search()' style="box-shadow:none; display: block;background-color: green !important;" type="button" class="btn btn-success mt-3">بحث بالتاريخ</button>
+            </div>
+            <ng-container *ngIf='show22'>
+                <button *ngIf='show22' style="box-shadow:none; display: block;background-color: green !important;" type="button" class="btn btn-success mt-3" onclick="printJS('printJS-form', 'html')">
+              طباعة تقرير مدفوعات العملاء
+           </button>
+                <div class="card-body">
+                    <div class="table-responsive" style="overflow: auto; height: 283px;">
+                        <table class="table table-striped table-sm" id="printJS-form" style="text-align: center;direction: rtl !important;">
+                            <thead>
+                                <tr>
+                                    <th>الترتيب</th>
+                                    <th>العميل</th>
+                                    <th>مبلغ الدفع</th>
+                                    <th>ملاحظة</th>
+                                    <th>مكان الدفع</th>
+                                    <th>الموظف</th>
+                                    <th>معاد الأستلام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf='show22'>
+                                    <tr *ngFor='let v of arre|nameSearchWho:searchName|placeSearch:placeSearch; let n = index;'>
+                                        <th scope="row">{{n+1}}</th>
+                                        <td>{{v.customername}}</td>
+                                        <td>{{v.money}}</td>
+                                        <td>{{v.notes}}</td>
+                                        <td>{{v.placename}}</td>
+                                        <td>{{v.username}}</td>
+                                        <td>{{v.date}}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button *ngIf='show22' style="box-shadow:none; display: block;background-color: green !important;" type="button" class="btn btn-success mt-3" onclick="printJS('printJS-form0', 'html')">
+              طباعة تقرير مرتجعات العملاء
+           </button>
+                <div class="card-body">
+                    <div class="table-responsive" style="overflow: auto; height: 283px;">
+                        <table class="table table-striped table-sm" id="printJS-form0" style="text-align: center;direction: rtl !important;">
+                            <thead>
+                                <tr>
+                                    <th>الترتيب</th>
+                                    <th>العميل</th>
+                                    <th>المبلغ المرتجع</th>
+                                    <th>ملاحظة</th>
+                                    <th>مكان السحب</th>
+                                    <th>الموظف</th>
+                                    <th>معاد الأرتجاع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf='show22'>
+                                    <tr *ngFor='let v of arre00|nameSearchWho:searchName|placeSearch:placeSearch; let n = index;'>
+                                        <th scope="row">{{n+1}}</th>
+                                        <td>{{v.customername}}</td>
+                                        <td>{{v.money}}</td>
+                                        <td>{{v.notes}}</td>
+                                        <td>{{v.placename}}</td>
+                                        <td>{{v.username}}</td>
+                                        <td>{{v.date}}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button *ngIf='show22' style="box-shadow:none; display: block;background-color: green !important;" type="button" class="btn btn-success mt-3" onclick="printJS('printJS-form1', 'html')">
+              طباعة تقرير دفع الطلبيات
+           </button>
+                <div class="card-body">
+                    <div class="table-responsive" style="overflow: auto; height: 283px;">
+                        <table class="table table-striped table-sm" id="printJS-form1" style="text-align: center;direction: rtl !important;">
+                            <thead>
+                                <tr>
+                                    <th>الترتيب</th>
+                                    <th>أسم الطلبية</th>
+                                    <th>مبلغ الدفع</th>
+                                    <th>ملاحظة</th>
+                                    <th>مكان الدفع</th>
+                                    <th>الموظف</th>
+                                    <th>معاد الدفع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf='show22'>
+                                    <tr *ngFor='let v of arre000|nameSearchWho:searchName|placeSearch:placeSearch; let n = index;'>
+                                        <th scope="row">{{n+1}}</th>
+                                        <td>{{v.ordername}}</td>
+                                        <td>{{v.money}}</td>
+                                        <td>{{v.notes}}</td>
+                                        <td>{{v.placename}}</td>
+                                        <td>{{v.username}}</td>
+                                        <td>{{v.date}}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button *ngIf='show22' style="box-shadow:none; display: block;background-color: green !important;" type="button" class="btn btn-success mt-3" onclick="printJS('printJS-form2', 'html')">
+              طباعة تقرير المصروفات
+           </button>
+                <div class="card-body">
+                    <div class="table-responsive" style="overflow: auto; height: 283px;">
+                        <table class="table table-striped table-sm" id="printJS-form2" style="text-align: center;direction: rtl !important;">
+                            <thead>
+                                <tr>
+                                    <th>الترتيب</th>
+                                    <th>الموظف</th>
+                                    <th>الوصف</th>
+                                    <th>مبلغ الدفع</th>
+                                    <th>ملاحظة</th>
+                                    <th>الفرع</th>
+                                    <th>المعاد</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf='show22'>
+                                    <tr *ngFor='let v of arre0000|nameSearchWho:searchName|placeSearch:placeSearch; let n = index;'>
+                                        <th scope="row">{{n+1}}</th>
+                                        <td>{{v.username}}</td>
+                                        <td>{{v.description}}</td>
+                                        <td>{{v.money}}</td>
+                                        <td>{{v.notes}}</td>
+                                        <td>{{v.placename}}</td>
+                                        <td>{{v.date}}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data098='ngForm' (submit)='search0(data098.value)' style="direction: rtl !important;">
+                        <span style="display: block;">
+                      <label style="color: white; float: right;">من :</label>
+                <div style="clear: both;"></div>
+                <input  class="text mt-2 d1" type="date" name="from" [(ngModel)]='from' placeholder="من" required="">
+                <label style="color: white; float: right;">الى :</label>
+                <div style="clear: both;"></div>
+                <input  class="text mt-2 d1" type="date" name="to" [(ngModel)]='to' placeholder="الى" required="">
+                  <input style="margin-top: 1rem !important;width: 94.5% !important;float: right;" type="submit" value="بحث">
+                  <div style="clear: both;"></div>
+                  </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>

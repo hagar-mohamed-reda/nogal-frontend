@@ -1,0 +1,200 @@
+<section *ngIf='show' style="padding: 20px;padding-top: 10px !important;padding-bottom: 0 !important;" class='no0'>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header no">
+                <h4 style="float: left;">All Users : </h4>
+                <div style="clear: both;margin-bottom: 5px;"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-12">
+                            <input placeholder="Search By Name" [(ngModel)]='searchName' id='plaho' class="p-1 mb-2" type="text" style="width: 100%; height: 25px;border: 1px solid black !important; color: black !important;">
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <select [(ngModel)]='rootSearch' class="form-control mb-2" style="height: 32px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                            <option disabled>Search By Root</option>
+                            <option>All</option>
+                            <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+                    </select>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <select [(ngModel)]='controlSearch' class="form-control mb-2" style="height: 32px !important;width: 100%;border: 1px solid black !important; color: black !important;line-height: 0;">
+                            <option disabled>Search By Permission</option>
+                            <option>All</option>
+                            <option *ngFor='let r of controlA' [value]="r.id">{{r.name}}</option>
+                          </select>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <button (click)='addUser()' style="height: 32px !important; width: 94.5% !important;border: 1px solid black !important;line-height: 0; " type="button" class="btn btn-secondary mb-2">Add User</button>
+                        </div>
+                        <div class='col-lg-1 col-12'>
+                            <button (click)='printert()' class="btn btn-secondary" style="height: 32px !important;border: 1px solid black !important;width: 94.5% !important;line-height: 0;"><i class="fas fa-print"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="card-body" style="padding: 0 !important;">
+                <div class="table-responsive dfg" style="overflow: auto;height: 67.2vh;">
+
+
+                    <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                        <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">No.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Root</th>
+                                    <th scope="col">Permission</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Adress</th>
+                                    <!-- <th scope="col">City</th> -->
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col" class='no'>Update</th>
+                                    <th scope="col" class='no'>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let v of arre|searchName:searchName|rootSearch:rootSearch|controlSearch:controlSearch; let n = index;'>
+                                    <th scope="row" style="text-align: center;">{{n+1}}</th>
+                                    <td data-title="Name">{{v.name}}</td>
+                                    <td data-title="Root">{{v.rootname}}</td>
+                                    <td data-title="Permission">{{v.controlname}}</td>
+                                    <td data-title="Email">{{v.email}}</td>
+                                    <td data-title="Adress">{{v.adress}}</td>
+                                    <!-- <td data-title="City">{{v.city}}</td> -->
+                                    <td data-title="Phone">0{{v.phone}}</td>
+                                    <td data-title="Password" class='prinee'>{{v.password}}</td>
+                                    <td data-title="Update" class='no'><button (click)='upP(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                                    <td data-title="Delete" class='no'><button (click)='delU(v.id)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data='ngForm' (submit)='addUser0(data.value)' style="direction: ltr !important;">
+                        <span id="form00" style="display: block;">
+                          <label style="color: white;">Name : </label>
+                <input style="height: 25px;"  class="text mt-2 d1" type="text" name="name" [(ngModel)]='name' placeholder="Name" required="">
+                <label style="color: white;" class="mt-2">Email : </label>
+                <input style="height: 25px;"  class="text mt-2 d1" type="text" name="email" [(ngModel)]='email' placeholder="Email" required="">
+                <label style="color: white;" class="mt-2">Adress : </label>
+                <input style="height: 25px;"  class="text mt-2 d1 " type="text" name="adress" [(ngModel)]='adress' placeholder="Adress" required="">
+                <label style="color: white;" class="mt-2">Branch : </label>
+                <select [(ngModel)]='root' name="root" class="form-control mt-4 select2 rootSelect" style="height: unset !important;">
+                  <option [value]='root' disabled>Branch</option>
+                  <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+          </select>
+          <label style="color: white;" class="mt-2">Password : </label>
+                <input style="height: 25px;"  class="text mt-2 d1" type="password" name="password" [(ngModel)]='password' placeholder="Password" required="">
+                <label style="color: white;" class="mt-2">Phone : </label>
+                <input style="height: 25px;"  class="text mt-2 d1 " type="number" name="phone" [(ngModel)]='phone' placeholder="Phone" required="">
+                <label style="color: white;" class="mt-2">Permission : </label>
+<select [(ngModel)]='control' name="control" class="form-control mt-4 select2 controlSelect" style="height: unset !important;">
+  <option [value]='control' disabled>Permission</option>
+  <option *ngFor='let r of controlA' [value]="r.id">{{r.name}}</option>
+</select>
+                  <input style="margin-top: 1rem !important;width: 94.5% !important;float: left; padding: 5px !important;" type="submit" value="Add">
+                  <div style="clear: both;"></div>
+                  </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>
+<section id="upd-dd">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedd()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+              <input (click)='ok()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;padding: 5px  !important;" type="submit" value="Delete confirmation">
+              <div style="clear: both;"></div>
+              </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-up">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUp()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data='ngForm' (submit)='okUp(data.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                      <label style="color: white;">Name : </label>
+                    <input style="height: 25px;" class="text mt-2 d1" type="text" name="nameU" [(ngModel)]='nameU' placeholder="Name" required="">
+                    <label style="color: white;" class="mt-2">E-mail : </label>
+                    <input style="height: 25px;"  class="text mt-2 d1" type="text" name="emailU" [(ngModel)]='emailU' placeholder="Email" required="">
+                    <label style="color: white;" class="mt-2">Adress : </label>
+                    <input style="height: 25px;" class="text mt-2 d1" type="text" name="adressU" [(ngModel)]='adressU' placeholder="Adress" required="">
+                    <label style="color: white;" class="mt-2">Branch : </label>
+                    <select [(ngModel)]='rootU' name="rootU" class="form-control mt-4 select2 rootSelectU" style="height: unset !important;">
+                      <option [value]='rootU' disabled>Branch</option>
+                      <option *ngFor='let x of rootA' [value]="x.id">{{x.name}}</option>
+              </select>
+              <label style="color: white;" class="mt-2">Password : </label>
+                    <input style="height: 25px;" class="text mt-2 d1" type="password" name="passwordU" [(ngModel)]='passwordU' placeholder="Password" required="">
+                    <label style="color: white;" class="mt-2">Phone : </label>
+                    <input style="height: 25px;" class="text mt-2 d1" type="number" name="phoneU" [(ngModel)]='phoneU' placeholder="Phone" required="">
+                    <label style="color: white;" class="mt-2">Permission : </label>
+    <select [(ngModel)]='controlU' name="controlU" class="form-control mt-4 select2 controlSelectU" style="height: unset !important;">
+      <option [value]='controlU' disabled>Permission</option>
+      <option *ngFor='let r of controlA' [value]="r.id">{{r.name}}</option>
+    </select>
+                      <input style="margin-top: 1rem !important;width: 94.5% !important;float: left;padding: 5px  !important;" type="submit" value="Update">
+                      <div style="clear: both;"></div>
+                </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

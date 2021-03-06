@@ -1,0 +1,33 @@
+<section *ngIf='show' style="padding: 20px;padding-top: 10px !important;padding-bottom: 0 !important;" class='no0'>
+    <div style="text-align: center !important;">
+        <h1>أضافة بند المصروفات</h1>
+        <div id="cardch" class="card mt-2" style="width: 60%; text-align: center;">
+            <div class="card-body" style="width: 100%; text-align: center;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <form #changPassword='ngForm' (submit)='putMoney(changPassword.value)'>
+                                <label>الوصف</label>
+                                <div class="form-group pass_show">
+                                    <input name="description" [(ngModel)]='description' type="text" class="form-control" placeholder="الوصف">
+                                </div>
+                                <label>المبلغ</label>
+                                <div class="form-group pass_show">
+                                    <input name="money" [(ngModel)]='money' type="number" class="form-control" placeholder="المبلغ">
+                                </div>
+                                <label>ملاحظة</label>
+                                <div class="form-group pass_show">
+                                    <input name="notes" [(ngModel)]='notes' type="text" class="form-control" placeholder="ملاحظة">
+                                </div>
+                                <button style="width: 100%;" type="submit" class="btn btn-primary mt-2">أضافة</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,863 @@
+<section *ngIf='show' style="padding: 20px;padding-bottom: 0 !important;padding-top: 0;" class='no0'>
+    <div class="col-12 mt-3">
+        <div class="card">
+            <div class="card-header choose3">
+                <h4 style="display:inline-block;">Orders : </h4>
+                <button *ngIf='false' (click)='addCu()' style="box-shadow:none; display: inline-block; border: 1px solid black;height: 27px;line-height:0;" type="button" class="btn btn-secondary ml-2">Add New QUotation</button>
+                <button *ngIf='false' (click)='addCustomer()' style="box-shadow:none; border: 1px solid black;height: 27px;line-height:0;" type="button" class="btn btn-secondary ml-1">Add Customer</button>
+                <!-- <button (click)='addS0C("as")' style="box-shadow:none;border: 1px solid black;" type="button" class="btn btn-secondary ml-1 yaa5y00">Add</button> -->
+                <button (click)='ref()' style="box-shadow:none;border: 1px solid black;height: 27px;line-height:0;" type="button" class="btn btn-success ml-1"><i class="fas fa-sync-alt"></i></button>
+                <button *ngIf='false' (click)='deleteall()' style="box-shadow:none;border: 1px solid black;height: 27px;line-height:0;" type="button" class="btn btn-danger ml-1 delall"><i class="fas fa-trash-alt"></i></button>
+                <button (click)='printall()' style="box-shadow:none;border: 1px solid black; float:right;height:27px;line-height:0;" type="button" class="btn btn-success ml-1 delall"><i class="fas fa-print"></i></button>
+                <div class='container-fluid'>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class='mt-1 pl-1 lastU'>
+                                <select [(ngModel)]='customer_id' name="customer_id" class="form-control mt-4 sO submitNumber select2 goQN" style="height: unset !important;">
+                  <option value="undefined" disabled>Customer</option>
+                  <option *ngFor='let r of arreCustomer' [value]="r.id">{{r.name}}</option>
+                  </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- <div class="col-lg-3 col-12">
+                          <input disabled  placeholder="أبحث بالأسم" [(ngModel)]='searchName' id='plaho' class="p-1" type="text" style="width: 100%; height: 45px;border: 1px solid black !important; color: black !important;">
+                      </div> -->
+                        <!-- <div class='col-lg-6 col-12 mt-2 yaa5y'>
+                          <form class='p-3' #data='ngForm' (submit)='addS0C(data.value)' style="direction: ltr !important;border:1px solid black;">
+                              <i (click)='close()' class="fas fa-times" style="color: white; cursor: pointer;text-align:right;color:black;float:right;"></i>
+                              <span style="clear: both;"></span>
+                              <span id="form00" style="display: block;">
+                                <fieldset>
+                                  <legend class='ml-2'>Add New QUotation</legend>
+
+              <select disabled [(ngModel)]='customer_id' name="customer_id" class="form-control mt-4 sO submitNumber select2 goQN" style="height: unset !important;">
+                <option value="undefined" disabled>Customer</option>
+                <option *ngFor='let r of arreCustomer' [value]="r.id">{{r.name}}</option>
+                </select><br>
+                <select disabled [(ngModel)]='customer_id' name="customer_id" class="form-control mt-4 sO submitNumber select2 goQN0" style="height: unset !important;">
+                  <option value="undefined" disabled>Seller</option>
+                  <option *ngFor='let r of arreCustomer00' [value]="r.id">{{r.name}}</option>
+                  </select>
+                  <div class="mt-4">
+                  <select disabled [(ngModel)]='nameUX0' name="nameUX0" class="form-control mt-4 sO submitNumber select2 goQN00X0" style="height: unset !important;">
+                    <option value="undefined" disabled>Broker</option>
+                    <option *ngFor='let r of arreCustomer000' [value]="r.id">{{r.name}}</option>
+                    </select>
+                  </div>
+                      <input disabled  style="margin-bottom:2px;margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+                      <div style="clear: both;"></div>
+                      </fieldset>
+                      </span>
+                          </form>
+                      </div> -->
+                        <div class="col-lg-4 col-12 p-1">
+                            <span style=' display: none !important;'>
+                          <select disabled [(ngModel)]='Customer' class="form-control select2 select2QC" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;" disabled>
+                        <option disabled>Customer</option>
+                        <option *ngFor='let x of arreCustomer' [value]="x.id">{{x.name}}</option>
+                </select>
+              </span>
+                            <!-- <button *ngIf='choose' (click)='UpdateCustomer()' style="box-shadow:none; display: inline-block; border: 1px solid black;" type="button" class="btn btn-secondary mt-3 ml-1">Update Customer</button>
+                          <button *ngIf='choose' (click)='UpdateCustomer()' type="button" class="btn btn-dark mt-3 ml-1" style="box-shadow: none;"><i class="fas fa-eye"></i></button> -->
+
+
+                            <form class='nog5 yaa5y0' #data124009='ngForm' (submit)='okUpAnother(data124009.value)' style="direction: ltr !important;border:1px solid black">
+                                <span id="form00" style="display: block;">
+                                <fieldset>
+                                  <legend class='ml-2'>Customer Details</legend>
+                                <div class='container-fluid pl-1 pr-1' style='padding-bottom: 5px;'>
+                                  <div class='row'>
+                                    <div class='col-6'>
+                                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="nameU" [(ngModel)]='nameU' placeholder="Name" required="">
+                                    </div>
+                                    <!-- <div class='col-6'>
+                                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="emailU" [(ngModel)]='emailU' placeholder="Email" required="">
+                                    </div> -->
+                                    <!-- <div class='col-6'>
+                                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="cityU" [(ngModel)]='cityU' placeholder="City" required="">
+                                    </div> -->
+                                    <div class='col-6'>
+                                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="adressU" [(ngModel)]='adressU' placeholder="Adress" required="">
+                                    </div>
+                                    <div class='col-6'>
+                                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="number" name="phoneU" [(ngModel)]='phoneU' placeholder="Phone" required="">
+                                    </div>
+                                    <div class='col-6'>
+                                      <input disabled  style='border-color: black !important;'  class="text mt-2 d1" type="number" name="phone2U" [(ngModel)]='phone2U' placeholder="Phone 2" required="">
+                                    </div>
+                                    <div class='col-6'>
+                                      <select disabled [(ngModel)]='typeU' name="typeU" class="form-control mt-2" style="height: 25px !important; width: 100%; color: black !important;border:1px solid black !important;padding:0 !important;text-align-last: center;">
+                                        <option disabled selected value="">Type</option>
+                                        <option>Normal</option>
+                                        <option>Family</option>
+                                        <option>Vip</option>
+                                </select></div>
+                                    <div *ngIf='upS' class='col-6'>
+                                      <input *ngIf='false' disabled  class="mt-2" style="width: 94.5% !important;float: left;color: white !important;line-height: 0;" type="submit" value="Update">
+                                    </div>
+                                    <div *ngIf='upS0' class='col-6'>
+                                      <input *ngIf='false' disabled  (click)='addS0(data124009.value)' class="mt-2" style="width: 94.5% !important;float: left;color: white !important;line-height: 0;" type="button" value="Add">
+                                    </div>
+                                  </div>
+                                </div>
+                        <div style="clear: both;"></div>
+                      </fieldset>
+                  </span>
+                            </form>
+                            <form class='nog5 mt-2 kkloi pb-2 yaa5y0' style="direction: ltr !important;border:1px solid black">
+                                <span id="form00" style="display: block;">
+                      <fieldset>
+                        <legend class='ml-2'>Seller Details</legend>
+                      <div class='container-fluid pl-1 pr-1'>
+                        <div class='row'>
+                          <div class='col-6 mb-2'>
+                            <select disabled [(ngModel)]='nameUX' name="nameUX" class="form-control mt-4 sO submitNumber select2 goQN00">
+                              <option value="undefined" disabled>Seller</option>
+                              <option *ngFor='let r of arreCustomer00' [value]="r.id">{{r.name}}</option>
+                              </select> </div>
+                        </div>
+                      </div>
+              <div style="clear: both;"></div>
+            </fieldset>
+        </span>
+                            </form>
+
+                        </div>
+
+                        <!-- !!!:  broker      -->
+                        <div class="col-lg-4 col-12">
+                            <form class='nog5 kkloi mt-1 pb-2 yaa5y0' style="direction: ltr !important;border:1px solid black;">
+                                <span id="form00" style="display: block;">
+    <fieldset>
+      <legend class='ml-2'>Broker</legend>
+    <div class='container-fluid pr-1 pl-1'>
+      <div class='row'>
+        <div class='col-6 mb-2'>
+          <select disabled [(ngModel)]='nameUX0' name="nameUX0" class="form-control mt-4 sO submitNumber select2 goQN00X0" style="height: unset !important;">
+            <option value="undefined" disabled>Broker</option>
+            <option *ngFor='let r of arreCustomer000' [value]="r.id">{{r.name}}</option>
+            </select>                      </div>
+            <div class='col-6 mb-2' style='text-align: right;'>
+              <button (click)='addS0C("as")' style="box-shadow:none;" type="button" class="btn btn-danger ml-1 yaa5y00">Confirmation of addition</button>
+            </div>
+            <form class='nog5 yaa5y0 mt-2' #data1240099='ngForm' (submit)='okUpB(data1240099.value)' style="direction: ltr !important;border:1px solid black">
+              <span id="form00" style="display: block;">
+                <fieldset>
+                  <legend class='ml-2'>Broker Details</legend>
+                <div class='container-fluid pl-1 pr-1' style='padding-bottom: 17px;'>
+                  <div class='row'>
+                    <div class='col-6'>
+                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="nameU0" [(ngModel)]='nameU0' placeholder="Name" required="">
+                    </div>
+                    <!-- <div class='col-6'>
+                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="emailU" [(ngModel)]='emailU' placeholder="Email" required="">
+                    </div>
+                    <div class='col-6'>
+                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="cityU" [(ngModel)]='cityU' placeholder="City" required="">
+                    </div>
+                    <div class='col-6'>
+                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="text" name="adressU" [(ngModel)]='adressU' placeholder="Adress" required="">
+                    </div> -->
+                    <div class='col-6'>
+                      <input disabled  style='border-color: black !important;' class="text mt-2 d1" type="number" name="phoneU0" [(ngModel)]='phoneU0' placeholder="Phone" required="">
+                    </div>
+                    <!-- <div class='col-6'>
+                      <input disabled  style='border-color: black !important;'  class="text mt-2 d1" type="number" name="phone2U" [(ngModel)]='phone2U' placeholder="Phone 2" required="">
+                    </div>
+                    <div class='col-6'>
+                      <select disabled [(ngModel)]='typeU' name="typeU" class="form-control mt-2" style="height: 25px !important; width: 100%; color: black !important;border:1px solid black !important;padding:0 !important;text-align-last: center;">
+                        <option disabled selected value="">Type</option>
+                        <option>Normal</option>
+                        <option>Family</option>
+                        <option>Vip</option>
+                </select></div> -->
+
+                <div class='col-6'>
+                  <label class="mt-2">Commision_Percentage</label>
+                  <input disabled  (blur)='changeDis01()' style='border-color: black !important;' class="text d1" type="text" name="commision" [(ngModel)]='commision' placeholder="Commision Percentage" required="">
+                </div>
+                <div class='col-6'>
+                  <label class="mt-2">Commision_Value</label>
+                  <input disabled  (blur)='changeDis02()' style='border-color: black !important;' class="text d1" type="text" name="commisionafter" [(ngModel)]='commisionafter' placeholder="Commision Value" required="">
+                </div>
+                    <div *ngIf='upS' class='col-6'>
+                      <input *ngIf='false' disabled  class="mt-2" style="width: 94.5% !important;float: left;color: white !important;line-height: 0;margin-bottom: 9px !important" type="submit" value="Update">
+                    </div>
+                    <div class='col-6'>
+                      <input *ngIf='false' disabled  (click)='addS0G(data1240099.value)' class="mt-2" style="width: 94.5% !important;float: left;color: white !important;line-height: 0; margin-bottom: 9px !important" type="button" value="Add">
+                    </div>
+                  </div>
+                </div>
+        <div style="clear: both;"></div>
+      </fieldset>
+  </span>
+                            </form>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                    </fieldset>
+                    </span>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-12 p-1 kkloi nog5">
+                    <!-- <select disabled [(ngModel)]='QUotationNo' class="form-control select2 select2Q" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+                      <option disabled>QUotation No</option>
+                      <option *ngFor='let x of arre' [value]="x.id">{{x.id}}  ( {{x.nameClient}} )</option>
+              </select> -->
+                    <!-- <button *ngIf='choose' (click)='PlusQ()' type="button" class="btn btn-dark mt-3" style="box-shadow: none;"><i class="fas fa-plus"></i></button> -->
+                    <form class='yaa5y0' style="direction: ltr !important;border:1px solid black">
+                        <span id="form00" style="display: block;">
+    <fieldset>
+      <legend class='ml-2'>Invoice Info</legend>
+    <div class='container-fluid pb-1 pl-1 pr-1'>
+      <div class='row'>
+        <div class='col-6 mb-2'>
+          <select [(ngModel)]='QUotationNo' class="form-control select2 select2Q" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+            <option value='undefined' disabled selected>QUotation No</option>
+            <option *ngFor='let x of arre|customerId:yarbs' [value]="x.id">{{x.id}}</option>
+            <option *ngIf='yarbs0'  disabled selected>{{arre[arre.length - 1].id + 1}}</option>
+    </select>
+    </div>
+    <!-- <div class='col-6 mb-2'>
+      <select disabled [(ngModel)]='QUotationNo' class="form-control select2" style="height: 45px !important; width: 100%;border: 1px solid black !important; color: black !important;">
+        <option value='undefined' disabled selected>QUotation No</option>
+        <option *ngFor='let x of arre' [value]="x.id">{{x.id}}</option>
+</select>
+</div> -->
+<div class='col-6 mb-2'>
+  <input disabled  style='border-color: black !important; width: 96% !important;'  class="text d1" type="text" name='dateAm' [(ngModel)]='dateAm' placeholder="Date" required="" disabled>
+</div>
+<div class='col-6 mb-2'>
+  <label>Total_amount</label>
+  <input disabled  style='border-color: black !important;'  class="text d1" type="number" name='alltotal' [(ngModel)]='alltotal' placeholder="Total amount" required="" disabled>
+</div>
+<div class='col-6 mb-2'>
+<label>Total_after_Discound</label>
+<input disabled  style='border-color: black !important;'  class="text d1" type="number" name='payAll00' [(ngModel)]='payAll00' placeholder="Total after Discound" required="">
+</div>
+<div class='col-6 mb-2'>
+<label>Discound_Value</label>
+<input disabled  (blur)='changeDis0()' style='border-color: black !important;'  class="text d1" type="number" name='discoundAllValue' [(ngModel)]='discoundAllValue' placeholder="Discound Value" required="">
+</div>
+<div class='col-6 mb-2'>
+<label>Discound_Percentage</label>
+<input disabled  (blur)='changeDis01()' style='border-color: black !important;'  class="text d1" type="number" name='discoundAll' [(ngModel)]='discoundAll' placeholder="Discound Percentage" required="">
+</div>
+<div class='col-6 mb-2'>
+<label>Down_Payment</label>
+<input disabled  style='border-color: black !important;'  class="text d1" type="number" name='payAll' [(ngModel)]='payAll' placeholder="Down Payment" required="">
+</div>
+<!-- <div class='col-6'>
+<input *ngIf='false' disabled  id='gotohill' (click)='upN5()' class="mt-2" style="margin-bottom:5px !important;width: 94.5% !important;float: left;color: white !important;line-height: 0;" type="submit" value="Update">
+</div>
+<div class='col-6'>
+<input *ngIf='false' disabled  (click)='items0("l")' class="mt-2" style="margin-bottom:5px !important;width: 94.5% !important;float: left;color: white !important;line-height: 0;" type="submit" value="Pay">
+</div> -->
+<div class='col-6 mt-3'>
+<input  (click)='items0Orderre()' class="mt-2 delall" style="margin-bottom:5px !important;width: 94.5% !important;float: left;color: white !important;line-height: 0;" type="submit" value="Quotation">
+</div>
+      </div>
+    </div>
+<div style="clear: both;"></div>
+</fieldset>
+</span>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body" style="padding: 0 !important; display:none !important">
+        <div class="table-responsive" style="overflow: auto;">
+
+
+            <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Phone 2</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Adress</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Update</th>
+                            <!-- <th scope="col">Delete</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let v of arreCustomer|searchName:searchName|serchCodeSupplier:serchCodeVisit; let n = index;'>
+                            <th scope="row">{{n+1}}</th>
+                            <td data-title="Name">{{v.name}}</td>
+                            <td data-title="Email">{{v.email}}</td>
+                            <td data-title="Phone">0{{v.phone}}</td>
+                            <td data-title="Phone">0{{v.phone2}}</td>
+                            <td data-title="City">{{v.city}}</td>
+                            <td data-title="Adress">{{v.adress}}</td>
+                            <td data-title="Date">{{v.date}}</td>
+                            <td data-title="Update"><button id='ostr' (click)='upUAnother(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                            <!-- <td data-title="Delete"><button (click)='delS(v.id , v.name)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button>
+                                  </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='false' id='fdgh' class='col-12 pt-2 pb-2' style='background-color: #292929;'>
+        <form *ngIf='false' id='upd-up00' #datadf4='ngForm' (submit)='addS0CB(datadf4.value)' style="direction: ltr !important;">
+            <span id="form00" style="display: block;">
+            <ng-container *ngIf='goQty0'>
+            <!-- <h2 style="text-align: center; color: white;" class='mb-2' *ngFor='let r of QtyAvaliable; let x =index'>{{x+1}} - The available quantity is {{r.qty}} in the store of the {{r.rootname}}</h2> -->
+            </ng-container>
+            <div class='container-fluid'>
+              <div class='row'>
+                <div class='col-sm-3 mt-2'id='klo'>
+                  <label style='color: white;'>Items :&nbsp;&nbsp;</label>
+                  <select disabled [(ngModel)]='items' name="items" class="form-control mt-4 sO submitNumber select2 selectPlus col-3" style="height: unset !important;">
+                    <option value='undefined' disabled>Items</option>
+                    <option *ngFor='let r of allI' [value]="r.code">{{r.code}}</option>
+                    </select>
+                </div>
+                <div class='col-sm-3 mt-2' id='klo'>
+                  <label style='color: white;'>Branches :&nbsp;&nbsp;</label>
+                  <select disabled [(ngModel)]='rootB' name="rootB" class="form-control mt-4 sO submitNumber select2 selectPlusR" style="height: unset !important;display: inline-block;">
+                    <option [value]='undefined' disabled>Branches</option>
+                    <option *ngFor='let r of QtyAvaliable' [value]="r.place">{{r.rootname}}</option>
+                    </select>
+                </div>
+                <div class='col-sm-3'>
+                  <label style='color: white;'>Qty : &nbsp;&nbsp;</label>
+                  <input disabled  style='width: 70% !important;height: 49px;display: inline-block;' class="text mt-2 d1 submitNumber mb-2" type="number" name="qty" [(ngModel)]='qty' [placeholder]="ost" required="">
+                </div>
+                <!-- <div class='col-sm-2'>
+                  <input disabled  style='height: 54px;' class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="payment" required="">
+                </div>-->
+                <!-- <div class="col-sm-2">
+                  <label style='color: white;'>Discound : &nbsp;&nbsp;</label>
+                  <input disabled  style='width: 73% !important;height: 49px;display: inline-block;' class="text mt-2 d1 submitNumber" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+                </div> -->
+                <div class="col-sm-1" style='padding-left: 10px;'>
+                  <button style='margin-top: auto; width:100px;line-height:1;' class='btn btn-secondary mt-3' type="submit"><i class="fas fa-plus"></i></button>
+                  <!-- <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add"> -->
+                </div>
+                </div>
+            </div>
+    <div style="clear: both;"></div>
+    </span>
+        </form>
+        <form id='upd-up0' #data09oiu00='ngForm' (submit)='okUp0(data09oiu00.value)' style="direction: ltr !important;">
+            <span id="form00" style="display: block;">
+                  <!-- <select disabled [(ngModel)]='items' name="items" class="form-control mt-4 sO submitNumber select2 selectPlus col-3" style="height: unset !important;">
+                    <option value='undefined' disabled>Items</option>
+                    <option *ngFor='let r of allI' [value]="r.code">{{r.code}}</option>
+                    </select> -->
+
+                    <div class='container-fluid'>
+                      <div class='row'>
+                    <div class='col-sm-3'>
+                      <label style='color: white;'>Qty : &nbsp;&nbsp;</label>
+                      <input disabled  style='width: 90% !important;height: 54px;display: inline-block;' class="text mt-2 d1 submitNumber mb-2" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+
+                    </div>
+                    <div class='col-sm-3'>
+                      <label style='color: white;'>price Seller : &nbsp;&nbsp;</label>
+                      <input disabled  style='width: 70% !important;height: 54px;display: inline-block;' class="text mt-2 d1 submitNumber mb-2" type="number" name="priceSeller" [(ngModel)]='priceSeller' placeholder="price Seller" required="">
+                    </div>
+                <!-- <label style="color: white;">Qty : </label>
+          <input disabled   class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required=""> -->
+          <!-- <label style="color: white;" class='mt-2'>Discound : </label>
+          <input disabled   class="text mt-2 d1" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+          <label style="color: white;" class='mt-2'>Pay : </label>
+          <input disabled   class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="Net Amount" required=""> -->
+          <div class="col-sm-1" style='padding-left: 10px;'>
+            <button style='margin-top: auto; width:100px;line-height:1;' class='btn btn-secondary mt-3' type="submit"><i class="fas fa-edit"></i></button>
+          <!-- <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Update"> -->
+        </div>
+            <div style="clear: both;"></div>
+            </div>
+            </div>
+      </span>
+        </form>
+    </div>
+
+
+    <div class='container-fluid choose2'>
+        <div class='row'>
+            <div class='col-6' style='text-align: center;'>
+                <img src='../../assets/video/04377946-bbde-4742-9bef-95d6a362cc0c.jpg'>
+            </div>
+            <div class="col-6" style='text-align: center;'>
+                <h2 style="display: inline-block;">DATE : </h2> {{date}}<br>
+                <h2 style="display: inline-block;">Order No . </h2> {{quota}}<br>
+                <!-- <h2 style="display: inline-block;">Type : </h2> Order -->
+            </div>
+            <div class="col-6" style='text-align: center;'>
+                <div class="card border-light mb-3" style="max-width: 18rem;border:1px solid #80808091 !important;text-align: left;display: inline-block;">
+                    <div class="card-header" style='text-align:center;background-color:#80808091; color:black;font-weight:bolder;padding: 0;'>SERVICE PROVIDER</div>
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">El Shikh Zayed - 2nd Entance - Area 6 - City Mark Mall</h5>
+                        <h5 class="card-text">Tel : 0238519333 - 0238519444</h5>
+                        <h5 class="card-text">Mobil : 01222222712</h5>
+                        <h5 href='www.nogal-furniture.com' style='font-weight: bolder;color: blue;'>www.nogal-furniture.com</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style='text-align: center;'>
+                <div class="card border-light mb-3" style="max-width: 18rem;border:1px solid #80808091 !important;text-align: left;display: inline-block;">
+                    <div class="card-header" style='text-align:center;background-color:#80808091; color:black;font-weight:bolder;padding: 0;'>CUSTOMER</div>
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">Name : {{nameU}}</h5>
+                        <h5 class="card-text">Adress : {{adressU}}</h5>
+                        <h5 class="card-text">Phone : {{phoneU}}</h5>
+                        <h5 class="card-text">Email : {{emailU}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <h2 *ngIf='choose' style="text-align: center;" class='mt-2 mb-2'>Total amount : {{amount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date : {{dateAm}}</h2> -->
+    <div class="card-body" style="padding: 0 !important;">
+        <div class="table-responsive printDD" style="overflow: auto;height: 33vh;">
+
+
+            <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;" class='choose3'>No.</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Item_Code</th>
+                            <th scope="col">Branch</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Finishing/fabrics</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Total_Coast</th>
+                            <th scope="col">Price_Seller</th>
+                            <th scope="col">Net_Amount</th>
+                            <!-- <th scope="col" class='choose3'>Update</th>
+                            <th scope="col" class='choose3'>Return_Quotation</th>
+                            <th scope="col" class='choose3'>Cancel</th> -->
+                            <!-- <th scope="col">Delete</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let v of arre00; let n = index;'>
+                            <th scope="row" style="text-align: center;" class='choose3'>{{n+1}}</th>
+                            <td data-title="Photo">
+                                <img (click)='showpho(v.id_item)' (mouseenter)='goPic(v.url.url)' (mouseleave)='goPic0()' style='width:50px;height:50px;cursor: pointer;' [src]='v.url.url'>
+                            </td>
+                            <td data-title="Item_Code">{{v.itemcode}}</td>
+                            <td data-title="Branch">{{v.rootname}}</td>
+                            <td data-title="Description">
+                                <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.description}}</a></div>
+                            </td>
+                            <td data-title="Finishing/fabrics">
+                                <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.fabric}}</a></div>
+                            </td>
+                            <td data-title="Price">{{v.price}}</td>
+                            <td data-title="Qty">{{v.qty}}</td>
+                            <td data-title="Total_Coast">{{v.price * v.qty}}</td>
+                            <td data-title="Discound">{{v.priceSeller}}</td>
+                            <td data-title="Net_Amount" class='prinee'>{{v.total}}</td>
+                            <!-- <td data-title="Update" class='choose3'><button (click)='upU0(v)' type="button" class="btn btn-success" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                            <td data-title="Return_Quotation" class='choose3'><button (click)='upU(v)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-edit"></i></button></td>
+                            <td data-title="Cancel" class='choose3'><i (click)='delS(v.id, v.itemcode , v.qty , v.id_item)' class="fas fa-times m-4" style="cursor: pointer;"></i></td> -->
+                            <!-- <td data-title="Delete"><button (click)='delS(v.id , v.name)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-trash-alt"></i></button> -->
+                            <!-- </td> -->
+                        </tr>
+                        <tr *ngIf='choose2' style='background-color:white !important;'>
+
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td data-title="TOTAL" style="text-align: right; font-weight: bolder;border: 0 !important;">TOTAL : </td>
+                            <td data-title="TOTAL">{{alltotal}}</td>
+                        </tr>
+                        <tr *ngIf='choose2' style='background-color:white !important;'>
+
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td data-title="Special Discount" style="text-align: right;font-weight: bolder;border: 0 !important;">Special Discount : </td>
+                            <td data-title="Special Discount">{{discoundAllValue}}</td>
+                        </tr>
+                        <tr *ngIf='choose2' style='background-color:white !important;'>
+
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td data-title="TOTAL After Dis" style="text-align: right;font-weight: bolder;border: 0 !important;">TOTAL After Dis : </td>
+                            <td data-title="TOTAL After Dis">{{payAll00}}</td>
+                        </tr>
+                        <ng-container *ngIf='choose2'>
+
+                            <tr *ngFor='let v of arre0987; let n = index;' style='background-color:white !important;'>
+
+                                <td style='opacity:0 !important;'></td>
+                                <td style='opacity:0 !important;'></td>
+                                <td style='opacity:0 !important;'></td>
+                                <td style='opacity:0 !important;'></td>
+                                <td style='opacity:0 !important;'></td>
+                                <td style='opacity:0 !important;'></td>
+                                <td style='opacity:0 !important;'></td>
+                                <td style='opacity:0 !important;'></td>
+                                <td data-title="TOTAL After Dis" style="text-align: right;font-weight: bolder;border: 0 !important;">{{v.date|date:'dd-MM-yyyy'}} </td>
+                                <td data-title="TOTAL After Dis">{{v.money}}</td>
+                            </tr>
+                        </ng-container>
+                        <tr *ngIf='choose2' style='background-color:white !important;'>
+
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td data-title="TOTAL After Dis" style="text-align: right;font-weight: bolder;border: 0 !important;">Total Payed : </td>
+                            <td data-title="TOTAL After Dis">{{payAll}}</td>
+                        </tr>
+                        <tr *ngIf='choose2' style='background-color:white !important;'>
+
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td style='opacity:0 !important;'></td>
+                            <td data-title="TOTAL After Dis" style="text-align: right;font-weight: bolder;border: 0 !important;">Remaining : </td>
+                            <td data-title="TOTAL After Dis">{{payAll00 - payAll}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- <div class="table-responsive printDD choose2" style="overflow: auto;height: 33vh;">
+
+
+            <div class="container" style="margin: 0 !important;max-width:100% !important;">
+                <table class="responsive-table" style="border-collapse: separate; /* Don't collapse */ border-spacing: 0;">
+                    <thead>
+                        <tr> -->
+        <!-- <th style="text-align: center;" class='choose3'>No.</th> -->
+        <!-- <th scope="col">Date</th> -->
+        <!-- <th scope="col" style='text-align: center;'>Date</th>
+                            <th scope="col">Payment_Way</th>
+                            <th scope="col">Money</th>
+                            <th scope="col">Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let v of arre0987; let n = index;'> -->
+        <!-- <th scope="row" style="text-align: center;" class='choose3'>{{n+1}}</th> -->
+        <!-- <td data-title="Date" style='text-align: center;'>{{v.date|date: 'dd-MM-yyyy'}}</td>
+                            <td data-title="Payment_Way">{{v.waypay}}</td>
+                            <td data-title="Money">{{v.money}}</td> -->
+        <!-- <td data-title="Finishing/fabrics">
+                              <div style="max-width:90px;display: inline-block;"><a style='display: block;'>{{v.fabric}}</a></div>
+                          </td> -->
+        <!-- <td data-title="Image">
+                                <img class='shadow-lg' (click)='showpho(v.id)' (mouseenter)='goPic(v.image)' (mouseleave)='goPic0()' style='width:50px;height:50px;cursor: pointer;' [src]='v.image'>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+    </div>
+    <p *ngIf='choose2' style="font-size: 15px;font-weight: bolder;">Noticeable : ‐</p>
+    <p *ngIf='choose2' style="font-size: 15px;">* Prices doesn't include VAT or any other taxes.</p>
+    <p *ngIf='choose2' style="font-size: 15px;">* This offer includes supply and installation</p>
+    <p *ngIf='choose2' style="font-size: 15px;">* This offer is valid for one week.</p>
+    <p *ngIf='choose2' class="mt-3" style="font-size: 15px;font-weight: bolder;text-align: center;color: black;">THANK YOU</p>
+    <img class='shadow-lg' *ngIf='goImg' style='position: fixed;top:0;bottom: 0;right:0;left:0;margin-right: auto;margin-left: auto;margin-bottom: auto;margin-top: auto;z-index: 200000;' [src]='www'>
+
+
+
+    </div>
+    </div>
+    <section id="upd">
+        <div class="main-w3layouts wrapper" style="z-index: 1;">
+            <div class="main-agileinfo">
+                <i (click)='close()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+                <div class="agileits-top">
+                    <form #data='ngForm' (submit)='addS0C(data.value)' style="direction: ltr !important;">
+                        <span id="form00" style="display: block;">
+
+          <select disabled [(ngModel)]='customer_id' name="customer_id" class="form-control mt-4 sO submitNumber select2 goQN" style="height: unset !important;">
+            <option value="undefined" disabled>Customer</option>
+            <option *ngFor='let r of arreCustomer' [value]="r.id">{{r.name}}</option>
+            </select><br>
+            <select disabled [(ngModel)]='customer_id' name="customer_id" class="form-control mt-4 sO submitNumber select2 goQN0" style="height: unset !important;">
+              <option value="undefined" disabled>Seller</option>
+              <option *ngFor='let r of arreCustomer00' [value]="r.id">{{r.name}}</option>
+              </select>
+                  <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+                  <div style="clear: both;"></div>
+                  </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<section class="loading">
+    <div class="spinner">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+</section>
+<section id="upd-dd">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closedd()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+      <input disabled  (click)='ok()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Delete confirmation">
+      <div style="clear: both;"></div>
+      </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd-up">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUp()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data09oiu='ngForm' (submit)='okUp(data09oiu.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+
+                    <label style="color: white;">Qty : </label>
+              <input disabled   class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+              <!-- <label style="color: white;" class='mt-2'>Discound : </label>
+              <input disabled   class="text mt-2 d1" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+              <label style="color: white;" class='mt-2'>Pay : </label>
+              <input disabled   class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="Net Amount" required=""> -->
+              <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Update">
+                <div style="clear: both;"></div>
+          </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section id="upd-up0">
+  <div class="main-w3layouts wrapper" style="z-index: 1;">
+      <div class="main-agileinfo">
+          <i (click)='closeUp0()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+          <div class="agileits-top">
+              <form #data09oiu00='ngForm' (submit)='okUp0(data09oiu00.value)' style="direction: ltr !important;">
+                  <span id="form00" style="display: block;"> -->
+<!-- <select disabled [(ngModel)]='items' name="items" class="form-control mt-4 sO submitNumber select2 selectPlus col-3" style="height: unset !important;">
+                      <option value='undefined' disabled>Items</option>
+                      <option *ngFor='let r of allI' [value]="r.code">{{r.code}}</option>
+                      </select> -->
+
+<!-- <label style="color: white;">Qty : </label>
+            <input disabled   class="text mt-2 d1" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required=""> -->
+<!-- <label style="color: white;" class='mt-2'>Discound : </label>
+            <input disabled   class="text mt-2 d1" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+            <label style="color: white;" class='mt-2'>Pay : </label>
+            <input disabled   class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="Net Amount" required=""> -->
+<!-- <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Update">
+<div style="clear: both;"></div> -->
+<!-- </span>
+              </form>
+          </div>
+      </div>
+  </div>
+</section> -->
+<section id="upd-ddGoP">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeddGoP()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data1020='ngForm' (submit)='Go12(data1020.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+                    <input disabled   class="text mt-2 d1" type="date" name="date" [(ngModel)]='date' placeholder="Add Money" required="" id="theDate">
+      <input disabled   class="text mt-2 d1" type="number" name="payGo" [(ngModel)]='payGo' placeholder="Add Money" required="">
+      <select disabled [(ngModel)]='PaymentWay' name="PaymentWay" class="form-control mt-2 sO" style="height: unset !important;">
+        <option value='undefined' disabled selected>Payment Way</option>
+        <option value='Cash' style="color: black !important;">Cash</option>
+        <option value='Visa' style="color: black !important;">Visa</option>
+        </select>
+        <input disabled  (click)='OrderDate00100()'  class="text mt-2 d1" type="text" placeholder="Images" required="" style="height: 54px;">
+                            <input disabled  style="overflow: hidden !important; display: none !important;" id="im0" (change)='img($event)'  class="text mt-2 d1" type="file" accept="image/*" placeholder="الصور" required="" multiple>
+                            <a *ngFor='let s of countImage; let x = index' id="but{{x}}"  class="but mt-2"><i class="fas fa-plus-circle"></i>
+                              <img draggable="false" id="put44{{x}}" style="width: 100%; display: block; height: 100%;">
+                            </a>
+      <!-- <input disabled   class="text mt-2 d1" type="text" name="notesGo" [(ngModel)]='notesGo' placeholder="ملاحظة" required=""> -->
+      <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+      <div style="clear: both;"></div>
+      </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="upd023" style="overflow-y: scroll;">
+    <div class="card text-center m-5" style="padding: 10px;overflow-x: scroll;">
+        <i (click)='close0093()' class="fas fa-times m-4" style="color: black; cursor: pointer; text-align: right;"></i>
+        <button (click)='delSPay()' style='margin-top: auto;' class='btn btn-secondary mt-3' type="submit"><i class="fas fa-plus"></i></button>
+        <table class="table table-striped table-sm" style="text-align: center; direction: ltr;">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Money</th>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Branch</th>
+                    <th>Payment Way</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let v of arre0987; let n = index;'>
+                    <th scope="row">{{n+1}}</th>
+                    <td>{{v.money}}</td>
+                    <td>{{v.date|date: 'dd-MM-yyyy'}}</td>
+                    <td>{{v.username}}</td>
+                    <td>{{v.rootname}}</td>
+                    <td>{{v.waypay}}</td>
+                    <td data-title="Photo" class='no'>
+                        <img class='shadow-lg' (click)='showpho(v.id)' (mouseenter)='goPic(v.image)' (mouseleave)='goPic0()' style='width:50px;height:50px;cursor: pointer;' [src]='v.image'>
+                    </td>
+                    <!-- <td><button (click)='closeitem00(v)' type="button" class="btn btn-danger" style="box-shadow: none;"><i class="fas fa-times"></i></button>
+                  </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <img *ngIf='goImg' style='position: fixed;top:0;bottom: 0;right:0;left:0;margin-right: auto;margin-left: auto;margin-bottom: auto;margin-top: auto;z-index: 200000;' [src]='www'>
+</section>
+<section id="upd-ddClose">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeddItem0()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <span id="form00" style="display: block;">
+      <input disabled  (click)='okClose()' style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="تأكيد الغاء المنتج">
+      <div style="clear: both;"></div>
+      </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section id="upd009A">
+  <div class="main-w3layouts wrapper" style="z-index: 1;">
+      <div class="main-agileinfo">
+          <i (click)='closeQ()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+          <div class="agileits-top">
+              <form #datadf4='ngForm' (submit)='addS0CB(datadf4.value)' style="direction: ltr !important;">
+                  <span id="form00" style="display: block;">
+                    <ng-container *ngIf='goQty0'>
+                    <h2 style="text-align: center; color: white;" class='mb-2' *ngFor='let r of QtyAvaliable; let x =index'>{{x+1}} - The available quantity is {{r.qty}} in the store of the {{r.rootname}}</h2>
+                    </ng-container>
+                    <select disabled [(ngModel)]='items' name="items" class="form-control mt-4 sO submitNumber select2 selectPlus" style="height: unset !important;">
+                      <option value='undefined' disabled>Items</option>
+                      <option *ngFor='let r of allI' [value]="r.code">{{r.code}}</option>
+                      </select>
+                      <input disabled   class="text mt-2 d1 submitNumber mb-2" type="number" name="qty" [(ngModel)]='qty' placeholder="Qty" required="">
+                      <select disabled [(ngModel)]='rootB' name="rootB" class="form-control mt-4 sO submitNumber select2 selectPlusR" style="height: unset !important;">
+                        <option value='undefined' disabled>Branches</option>
+                        <option *ngFor='let r of QtyAvaliable' [value]="r.place">{{r.rootname}}</option>
+                        </select>
+    <input disabled   class="text mt-2 d1" type="number" name="pay" [(ngModel)]='pay' placeholder="payment" required="">
+      <input disabled  class="text mt-2 d1 submitNumber" type="number" name="discound" [(ngModel)]='discound' placeholder="Discound" required="">
+            <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Add">
+            <div style="clear: both;"></div>
+            </span>
+              </form>
+          </div>
+      </div>
+  </div>
+</section> -->
+<section id="updPho">
+    <button (click)='closePhot()' type="button" class="btn btn-danger m-4" style="box-shadow: none;"><i class="fas fa-times " style="color: white; cursor: pointer;"></i></button>
+    <div style="text-align: center !important; overflow: hidden !important;">
+        <div style="height: 80vh;width: 50%;display: inline-block; overflow: hidden !important;" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" *ngIf='qwss'>
+                <div class="carousel-item active">
+                    <img style="width: 100%;height: 80vh;" [src]="arrImage[0].url" class="d-block" alt="...">
+                </div>
+                <div *ngFor='let f of arrImage|slice:1; let ff = index;' class="carousel-item">
+                    <img style="width: 100%;height: 80vh;" [src]="arrImage[ff + 1].url" class="d-block" alt="...">
+                </div>
+            </div>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:gray; border-radius:50%; margin-right: 10px;" class="carousel-control-prev shadow-lg" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span style="margin-top: 25%;" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a style="display: inline-block;width: 40px;height: 40px;margin-top: 40vh; background-color:gray; border-radius:50%; margin-left: 10px;" class="carousel-control-next shadow-lg" href="#carouselExampleControls" role="button" data-slide="next">
+                <span style="margin-top: 25%;" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+<section style="display: none !important;">
+    <div class="main-w3layouts wrapper" style="z-index: 1;">
+        <div class="main-agileinfo">
+            <i (click)='closeUpAnother()' class="fas fa-times m-4" style="color: white; cursor: pointer;"></i>
+            <div class="agileits-top">
+                <form #data124009='ngForm' (submit)='okUpAnother(data124009.value)' style="direction: ltr !important;">
+                    <span id="form00" style="display: block;">
+            <input disabled   class="text mt-2 d1" type="text" name="nameU" [(ngModel)]='nameU' placeholder="Name" required="">
+            <input disabled   class="text mt-2 d1" type="text" name="emailU" [(ngModel)]='emailU' placeholder="Email" required="">
+            <input disabled   class="text mt-2 d1" type="text" name="cityU" [(ngModel)]='cityU' placeholder="City" required="">
+            <input disabled   class="text mt-2 d1" type="text" name="adressU" [(ngModel)]='adressU' placeholder="Adress" required="">
+            <input disabled   class="text mt-2 d1" type="number" name="phoneU" [(ngModel)]='phoneU' placeholder="Phone" required="">
+            <input disabled   class="text mt-2 d1" type="number" name="phone2U" [(ngModel)]='phone2U' placeholder="Phone 2" required="">
+              <input disabled  style="margin-top: 1rem !important;width: 94.5% !important;float: left;" type="submit" value="Update">
+              <div style="clear: both;"></div>
+        </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
